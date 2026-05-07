@@ -1,5 +1,6 @@
 #include "ExitDoorUpdateComponent.h"
 
+#include <SFML/Graphics/Rect.hpp>
 #include <SFML/System/Vector2.hpp>
 #include <NiEngine/ComponentLocator.h>
 #include <NiEngine/GameMode.h>

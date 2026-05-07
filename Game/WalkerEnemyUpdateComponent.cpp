@@ -27,6 +27,13 @@ void WalkerEnemyUpdateComponent::Init(ni::AnimatedGraphicsComponent& graphics, C
 		movement_direction = -1;
 	});
 
+	physics.OnLanding([this]() {
+		if (is_dead_)
+		{
+			played_death_animation_ = true;
+		}
+	});
+
 	ni::Animation walk_animation;
 	walk_animation.key_ = kWalkAnimationKey;
 	walk_animation.start_frame = 1;
@@ -42,8 +49,16 @@ void WalkerEnemyUpdateComponent::Update()
 	auto physics  = static_cast<CharacterPhysicsComponent*>(component_locator_.GetPhysicsComponent(owner_id_));
 	if (is_dead_)
 	{
-		physics->Move(0);
 		graphics->SetFrame(kAnimationRow, 4);
+
+		if (!played_death_animation_)
+		{
+			PlayDeathAnimation(*physics);
+		}
+		else
+		{
+			physics->Move(0);
+		}
 		return;
 	}
 	UpdatePlayerTrackingStatus();
@@ -72,7 +87,11 @@ void WalkerEnemyUpdateComponent::CollideTop()
 		return;
 	}
 	is_dead_ = true;
+
+	float old_player_jump_force = player_physics->GetJumpForce();
+	player_physics->SetJumpForce(old_player_jump_force + old_player_jump_force * .3f);
 	player_physics->ForceJump();
+	player_physics->SetJumpForce(old_player_jump_force);
 }
 
 void WalkerEnemyUpdateComponent::CollideBottom()
@@ -89,4 +108,15 @@ void WalkerEnemyUpdateComponent::KillPlayer()
 	ni::UpdateComponent* update = component_locator_.GetUpdateComponent(player_id_);
 	auto player_update = static_cast<PlayerUpdateComponent*>(update);
 	player_update->Die();
+}
+
+void WalkerEnemyUpdateComponent::PlayDeathAnimation(CharacterPhysicsComponent& physics)
+{
+	if (!airborne_)
+	{
+		physics.SetJumpForce(150);
+		physics.ForceJump();
+		airborne_ = true;
+	}
+	physics.Move(-movement_direction);
 }

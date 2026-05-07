@@ -3,9 +3,19 @@
      "gid":341,
      "height":16,
      "id":81,
-     "name":"",
+     "name":"walker",
      "opacity":1,
      "properties":[
+            {
+             "name":"initial_walking_direction",
+             "type":"int",
+             "value":1
+            }, 
+            {
+             "name":"speed",
+             "type":"float",
+             "value":80
+            }, 
             {
              "name":"type_id",
              "type":"int",

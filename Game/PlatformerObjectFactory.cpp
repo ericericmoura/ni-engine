@@ -175,9 +175,9 @@ void PlatformerObjectFactory::SpawnEnemy(ni::ObjectBlueprint object, ni::ObjectT
 	ni::Id<ni::GameObjectTag> id = mode.CreateGameObject();
 
 	auto physics  = std::make_unique<CharacterPhysicsComponent>(texture_coordinates.size);
-	physics->SetSpeed(80.0f);
+	physics->SetSpeed(GetAttributeFromObject<float>(object, object_template, "speed"));
 
-	auto graphics = std::make_unique<ni::AnimatedGraphicsComponent>(texture_key, texture_coordinates.size, 1);
+	auto graphics = std::make_unique<ni::AnimatedGraphicsComponent>(texture_key, texture_coordinates.size, GetAttributeFromObject<float>(object, object_template, "initial_walking_direction"));
 
 	auto update = std::make_unique<WalkerEnemyUpdateComponent>(mode.GetComponentStore(), id, 1);
 

@@ -46,11 +46,19 @@ void PlayerUpdateComponent::Init(ni::AnimatedGraphicsComponent& graphics, Charac
 	});
 
 	physics.OnFalling([this]() {
+		if (dead_)
+		{
+			return;
+		}
 		auto graphics = component_locator_.GetFirstAnimatedGraphicsComponent(owner_id_);
 		graphics->SetFrame(kAnimationRow, 4);
 	});
 
 	physics.OnJumping([this]() {
+		if (dead_)
+		{
+			return;
+		}
 		auto graphics = component_locator_.GetFirstAnimatedGraphicsComponent(owner_id_);
 		graphics->SetFrame(kAnimationRow, 3);
 
@@ -61,6 +69,10 @@ void PlayerUpdateComponent::Init(ni::AnimatedGraphicsComponent& graphics, Charac
 
 	physics.OnLanding([this]() {
 		airborne_ = false;
+		if (dead_)
+		{
+			playing_dead_animation_ = false;
+		}
 	});
 
 	ni::Animation jump_animation;
@@ -81,13 +93,24 @@ void PlayerUpdateComponent::Init(ni::AnimatedGraphicsComponent& graphics, Charac
 
 void PlayerUpdateComponent::Update()
 {
+	auto physics = static_cast<CharacterPhysicsComponent*>(component_locator_.GetPhysicsComponent(owner_id_));
+
 	if (dead_)
 	{
+		if (playing_dead_animation_)
+		{
+			physics->Move(-last_moved_direction_);
+		}
+		else
+		{
+			physics->Move(0);
+		}
 		return;
 	}
+	
 	int dir = sf::Keyboard::isKeyPressed(sf::Keyboard::Scancode::D) - sf::Keyboard::isKeyPressed(sf::Keyboard::Scancode::A);
+	last_moved_direction_ = dir;
 
-	auto physics = static_cast<CharacterPhysicsComponent*>(component_locator_.GetPhysicsComponent(owner_id_));
 	if (physics)
 	{
 		physics->Move(dir);
@@ -115,8 +138,11 @@ void PlayerUpdateComponent::Die()
 	dead_ = true;
 	auto physics = static_cast<CharacterPhysicsComponent*>(component_locator_.GetPhysicsComponent(owner_id_));
 	if (physics)
-	{
-		physics->Move(0);
+	{	
+		physics->SetJumpForce(150);
+		physics->ForceJump();
+		airborne_ = true;
+		playing_dead_animation_ = true;
 	}
 	auto graphics = component_locator_.GetFirstAnimatedGraphicsComponent(owner_id_);
 	if (graphics)

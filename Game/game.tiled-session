@@ -12,6 +12,14 @@
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
+        "maps/backup/level_5/level_5.json": {
+            "scale": 1.805,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 240.1662049861496,
+                "y": 160.11080332409972
+            }
+        },
         "maps/level_01.tmx": {
             "scale": 2,
             "selectedLayer": 0,
@@ -78,11 +86,11 @@
             "expandedObjectLayers": [
                 8
             ],
-            "scale": 3,
+            "scale": 2,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 248,
-                "y": 251.66666666666666
+                "x": 263.25,
+                "y": 172.5
             }
         },
         "maps/level_7/level_7.json": {
@@ -125,7 +133,13 @@
                 "y": 335
             }
         },
+        "maps/tilesets/kenney_1bit.json": {
+            "scaleInDock": 1
+        },
         "maps/tilesets/kenney_1bit.tsx": {
+            "scaleInDock": 1
+        },
+        "maps/tilesets/transparent_tiles.tsx": {
             "scaleInDock": 1
         },
         "maps/transparent_tiles.tsx": {
@@ -157,7 +171,7 @@
             "scaleInEditor": 8
         }
     },
-    "last.exportedFilePath": "C:/Users/Eric/Documents/01_Projects/02_Games/04_CustomEngine/Game/Game/maps/level_15",
+    "last.exportedFilePath": "C:/Users/Eric/Documents/01_Projects/02_Games/04_CustomEngine/Game/Game/maps/level_5",
     "last.externalTilesetPath": "C:/Users/Eric/Documents/01_Projects/02_Games/04_CustomEngine/Game/Game/tilesets",
     "last.imagePath": "C:/Users/Eric/Documents/01_Projects/02_Games/04_CustomEngine/Game/Game/graphics",
     "last.objectTemplatePath": "C:/Users/Eric/Documents/01_Projects/02_Games/04_CustomEngine/Game/Game/maps/templates",
@@ -176,6 +190,7 @@
     "project": "game.tiled-project",
     "property.type": "float",
     "recentFiles": [
+        "maps/backup/level_5/level_5.json",
         "tilesets/karsioriart_tiles_and_backgrounds.tsx",
         "maps/level_4/level_4.tmx",
         "tilesets/kenney_1bit.json",
@@ -186,8 +201,7 @@
         "tilesets/kenney_1bit.tsx",
         "maps/level_01/level_01.tmx",
         "maps/level_2/level_2.tmx",
-        "maps/level_02/level_02.tmx",
-        "maps/rules/ground_autotile_rules.tmx"
+        "maps/level_02/level_02.tmx"
     ],
     "tileset.lastUsedExportFilter": "JSON tileset files (*.tsj *.json)",
     "tileset.lastUsedFormat": "tsx",

@@ -16,6 +16,7 @@ public:
 
 	virtual void Init(ni::AnimatedGraphicsComponent& graphics, CharacterPhysicsComponent& physics) = 0;
 	virtual void Update() override;
+	
 	void Die() { is_dead_ = true;  }
 
 protected:

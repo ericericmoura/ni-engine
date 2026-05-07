@@ -92,6 +92,10 @@ void ObstacleUpdateComponent::HandleCollisions()
 	HandleCollisionById(player_id_, collision_box, box_center_position);
 
 	std::vector<ni::Id<ni::GameObjectTag>> enemies = component_locator_.GetIdsByTag(PlatformerGameMode::kEnemyTag);
+	if (enemies.empty())
+	{
+		return;
+	}
 	for (auto& enemy_id : enemies)
 	{
 		HandleCollisionById(enemy_id, collision_box, box_center_position);

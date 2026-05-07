@@ -30,6 +30,7 @@ public:
 	void FallFromPlatform();
 	sf::Vector2f GetVelocity() const { return velocity_;  };
 
+	float GetJumpForce() const { return jump_force_; }
 	void SetJumpForce(float new_value) { jump_force_ = new_value; }
 	void SetSpeed    (float new_value) { speed_      = new_value; }
 	void SetGravity  (float new_value) { gravity_    = new_value; }

@@ -132,9 +132,7 @@ std::vector<ni::Id<ni::GameObjectTag>> ni::ComponentStore::GetIdsByTag(std::stri
 	auto it = id_tag_map_.find(tag);
 	if (it == id_tag_map_.end())
 	{
-#ifdef _DEBUG
-		std::cout << "ComponentLocator: Id not found!";
-#endif // _DEBUG
+		return {};
 	}
 	return it->second;
 }

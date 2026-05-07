@@ -24,7 +24,7 @@ public:
 	);
 	
 	void Update() override;
-	virtual void CollideTop(sf::FloatRect collision_box) override;
+	virtual void CollideTop(sf::FloatRect collision_box, ni::Id<ni::GameObjectTag> object_id) override;
 
 private:
 	sf::Vector2i movement_position_offset_ = {};

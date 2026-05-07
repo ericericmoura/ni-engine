@@ -47,17 +47,17 @@ void MovingObstacleUpdateComponent::Update()
 	ObstacleUpdateComponent::Update();
 }
 
-void MovingObstacleUpdateComponent::CollideTop(sf::FloatRect collision_box)
+void MovingObstacleUpdateComponent::CollideTop(sf::FloatRect collision_box, ni::Id<ni::GameObjectTag> object_id)
 {	
 	for (auto& collision : collision_components_)
 	{
-		collision->SolveTopCollision(collision_box, component_locator_, player_id_);
+		collision->SolveTopCollision(collision_box, component_locator_, object_id);
 	}
-	
+
 	if (moving_)
 	{
-		ni::TransformComponent* player_transform = component_locator_.GetTransformComponent(player_id_);
-		if (player_transform) player_transform->GetTransformable().move({ amount_moved_x_, 0});
+		ni::TransformComponent* object_transform = component_locator_.GetTransformComponent(object_id);
+		if (object_transform) object_transform->GetTransformable().move({ amount_moved_x_, 0});
 	}
 }
 

@@ -19,17 +19,32 @@ ExitDoorUpdateComponent::ExitDoorUpdateComponent(ni::GameMode& mode, ni::Compone
 	});
 }
 
-void ExitDoorUpdateComponent::CollideTop(sf::FloatRect collision_box)
+void ExitDoorUpdateComponent::CollideTop(sf::FloatRect collision_box, ni::Id<ni::GameObjectTag> object_id)
 {
-	on_player_enter_.Notify();
+	auto player_id = component_locator_.GetIdByTag(PlatformerGameMode::kPlayerTag);
+
+	if (player_id == object_id)
+	{
+		on_player_enter_.Notify();
+	}
 }
 
-void ExitDoorUpdateComponent::CollideBottom(sf::FloatRect collision_box)
+void ExitDoorUpdateComponent::CollideBottom(sf::FloatRect collision_box, ni::Id<ni::GameObjectTag> object_id)
 {
-	on_player_enter_.Notify();
+	auto player_id = component_locator_.GetIdByTag(PlatformerGameMode::kPlayerTag);
+
+	if (player_id == object_id)
+	{
+		on_player_enter_.Notify();
+	}
 }
 
-void ExitDoorUpdateComponent::CollideFront(sf::FloatRect collision_box)
+void ExitDoorUpdateComponent::CollideFront(sf::FloatRect collision_box, ni::Id<ni::GameObjectTag> object_id)
 {
-	on_player_enter_.Notify();
+	auto player_id = component_locator_.GetIdByTag(PlatformerGameMode::kPlayerTag);
+
+	if (player_id == object_id)
+	{
+		on_player_enter_.Notify();
+	}
 }

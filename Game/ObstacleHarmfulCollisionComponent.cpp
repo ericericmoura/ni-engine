@@ -7,6 +7,7 @@
 #include <NiEngine/UpdateComponent.h>
 
 #include "PlayerUpdateComponent.h"
+#include "EnemyUpdateComponent.h"
 
 void ObstacleHarmfulCollisionComponent::SolveTopCollision(sf::FloatRect collision_box, ni::ComponentLocator& locator, ni::Id<ni::GameObjectTag> id)
 {
@@ -27,8 +28,16 @@ void ObstacleHarmfulCollisionComponent::KillCharacter(ni::ComponentLocator& loca
 {
 	ni::UpdateComponent* update = locator.GetUpdateComponent(id);
 
-	auto player_update = static_cast<PlayerUpdateComponent*>(update);
-	player_update->Die();
+	auto player_update = dynamic_cast<PlayerUpdateComponent*>(update);
+	if (player_update)
+	{
+		player_update->Die();
+	}
+	auto enemy_update = dynamic_cast<EnemyUpdateComponent*>(update);
+	if (enemy_update)
+	{
+		enemy_update->Die();
+	}
 }
 
 void ObstacleHarmfulCollisionComponent::SolveRightCollision(sf::FloatRect collision_box, ni::ComponentLocator& locator, ni::Id<ni::GameObjectTag> id)

@@ -58,7 +58,7 @@ ni::AnimatedGraphicsComponent* ni::ComponentStore::GetFirstAnimatedGraphicsCompo
 
 void ni::ComponentStore::RegisterTagForId(Id<GameObjectTag> target, std::string tag)
 {
-	id_tag_map_.emplace(tag, target);
+	id_tag_map_[tag].push_back(target);
 }
 
 void ni::ComponentStore::PhysicsUpdate(b2WorldId world_id, const Tilemap& current_tilemap, float delta)

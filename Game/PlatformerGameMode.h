@@ -16,6 +16,7 @@ class PlatformerGameMode : public ni::GameMode
 public:
 	inline static const std::string kSpikeTag  = "spike";
 	inline static const std::string kPlayerTag = "player";
+	inline static const std::string kEnemyTag  = "enemy";
 
 	PlatformerGameMode();
 

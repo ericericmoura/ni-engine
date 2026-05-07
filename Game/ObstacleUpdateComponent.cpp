@@ -14,6 +14,7 @@
 #include "CharacterPhysicsComponent.h"
 #include "ObstacleCollisionComponent.h"
 #include "PlatformerGameMode.h"
+#include <vector>
 
 ObstacleUpdateComponent::ObstacleUpdateComponent(ni::ComponentLocator& component_locator, ni::Id<ni::GameObjectTag> id, sf::Vector2f collision_box_size) 
 	: ni::UpdateComponent(component_locator)
@@ -32,43 +33,43 @@ void ObstacleUpdateComponent::Update()
 	HandleCollisions();
 }
 
-void ObstacleUpdateComponent::CollideTop(sf::FloatRect collision_box)
+void ObstacleUpdateComponent::CollideTop(sf::FloatRect collision_box, ni::Id<ni::GameObjectTag> object_id)
 {
 	for (auto& collision : collision_components_)
 	{
-		collision->SolveTopCollision(collision_box, component_locator_, player_id_);
+		collision->SolveTopCollision(collision_box, component_locator_, object_id);
 	}
 }
 
-void ObstacleUpdateComponent::CollideBottom(sf::FloatRect collision_box)
+void ObstacleUpdateComponent::CollideBottom(sf::FloatRect collision_box, ni::Id<ni::GameObjectTag> object_id)
 {
 	for (auto& collision : collision_components_)
 	{
-		collision->SolveBottomCollision(collision_box, component_locator_, player_id_);
+		collision->SolveBottomCollision(collision_box, component_locator_, object_id);
 	}
 }
 
-void ObstacleUpdateComponent::CollideFront(sf::FloatRect collision_box)
+void ObstacleUpdateComponent::CollideFront(sf::FloatRect collision_box, ni::Id<ni::GameObjectTag> object_id)
 {
 	for (auto& collision : collision_components_)
 	{
-		collision->SolveFrontCollision(collision_box, component_locator_, player_id_);
+		collision->SolveFrontCollision(collision_box, component_locator_, object_id);
 	}
 }
 
-void ObstacleUpdateComponent::CollideLeft(sf::FloatRect collision_box)
+void ObstacleUpdateComponent::CollideLeft(sf::FloatRect collision_box, ni::Id<ni::GameObjectTag> object_id)
 {
 	for (auto& collision : collision_components_)
 	{
-		collision->SolveLeftCollision(collision_box, component_locator_, player_id_);
+		collision->SolveLeftCollision(collision_box, component_locator_, object_id);
 	}
 }
 
-void ObstacleUpdateComponent::CollideRight(sf::FloatRect collision_box)
+void ObstacleUpdateComponent::CollideRight(sf::FloatRect collision_box, ni::Id<ni::GameObjectTag> object_id)
 {
 	for (auto& collision : collision_components_)
 	{
-		collision->SolveRightCollision(collision_box, component_locator_, player_id_);
+		collision->SolveRightCollision(collision_box, component_locator_, object_id);
 	}
 }
 
@@ -79,17 +80,40 @@ void ObstacleUpdateComponent::HandleCollisions()
 		player_id_ = component_locator_.GetIdByTag(PlatformerGameMode::kPlayerTag);
 	}
 
-	ni::TransformComponent* transform        = component_locator_.GetTransformComponent(owner_id_ );
-	ni::TransformComponent* player_transform = component_locator_.GetTransformComponent(player_id_);
-	auto player_physics = static_cast<CharacterPhysicsComponent*>(component_locator_.GetPhysicsComponent(player_id_));
+	ni::TransformComponent* transform = component_locator_.GetTransformComponent(owner_id_);
 
 	sf::FloatRect collision_box;
 	collision_box.position = transform->GetTransformable().getPosition();
-	collision_box.size     = collision_box_size_;
+	collision_box.size     = collision_box_size_;	
 
-	if (collision_box.findIntersection(player_physics->GetFeetBounds(player_transform->GetTransformable().getPosition())))
-	{		
-		CollideTop(collision_box);
+	sf::Vector2f box_center_position = collision_box.position;
+	box_center_position += collision_box.size / 2.0f;
+
+	HandleCollisionById(player_id_, collision_box, box_center_position);
+
+	std::vector<ni::Id<ni::GameObjectTag>> enemies = component_locator_.GetIdsByTag(PlatformerGameMode::kEnemyTag);
+	for (auto& enemy_id : enemies)
+	{
+		HandleCollisionById(enemy_id, collision_box, box_center_position);
+	}
+}
+
+void ObstacleUpdateComponent::HandleCollisionById(ni::Id<ni::GameObjectTag> object_id, const sf::FloatRect& collision_box, const sf::Vector2f& collision_box_center_position)
+{
+	ni::TransformComponent* other_transform  = component_locator_.GetTransformComponent(object_id);
+
+	float distance = (other_transform->GetTransformable().getPosition() - collision_box_center_position).length();
+
+	if (distance > collision_box.size.x && distance > collision_box.size.y)
+	{
+		return;
+	}
+	
+	auto other_physics = static_cast<CharacterPhysicsComponent*>(component_locator_.GetPhysicsComponent(object_id));
+
+	if (collision_box.findIntersection(other_physics->GetFeetBounds(other_transform->GetTransformable().getPosition())))
+	{
+		CollideTop(collision_box, object_id);
 
 		colliding_ = true;
 	}
@@ -97,25 +121,25 @@ void ObstacleUpdateComponent::HandleCollisions()
 	{
 		for (auto& collision : collision_components_)
 		{
-			collision->SolveTopCollisionLost(collision_box, component_locator_, player_id_);
+			collision->SolveTopCollisionLost(collision_box, component_locator_, object_id);
 		}
 		colliding_ = false;
 	}
 
-	if (collision_box.findIntersection(player_physics->GetFrontBounds(player_transform->GetTransformable().getPosition())))
+	if (collision_box.findIntersection(other_physics->GetFrontBounds(other_transform->GetTransformable().getPosition())))
 	{
-		CollideFront(collision_box);
+		CollideFront(collision_box, object_id);
 	}
-	else if (collision_box.findIntersection(player_physics->GetSideBounds(player_transform->GetTransformable().getPosition(), -1)))
+	else if (collision_box.findIntersection(other_physics->GetSideBounds(other_transform->GetTransformable().getPosition(), -1)))
 	{
-		CollideLeft(collision_box);
+		CollideLeft(collision_box, object_id);
 	}
-	else if (collision_box.findIntersection(player_physics->GetSideBounds(player_transform->GetTransformable().getPosition(), 1)))
+	else if (collision_box.findIntersection(other_physics->GetSideBounds(other_transform->GetTransformable().getPosition(), 1)))
 	{
-		CollideRight(collision_box);
+		CollideRight(collision_box, object_id);
 	}
-	if (collision_box.findIntersection(player_physics->GetHeadBounds(player_transform->GetTransformable().getPosition())))
+	if (collision_box.findIntersection(other_physics->GetHeadBounds(other_transform->GetTransformable().getPosition())))
 	{
-		CollideBottom(collision_box);
+		CollideBottom(collision_box, object_id);
 	}
 }

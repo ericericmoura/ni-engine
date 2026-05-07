@@ -67,8 +67,6 @@ void PlatformerObjectFactory::SpawnPlayer(ni::ObjectBlueprint object, ni::Object
 {
 	ni::Id<ni::GameObjectTag> id = mode.CreateGameObject();
 
-	mode.GetComponentStore().RegisterTagForId(id, PlatformerGameMode::kPlayerTag);
-
 	auto physics  = std::make_unique<CharacterPhysicsComponent>(texture_coordinates.size);
 
 	physics->SetGravity  (GetAttributeFromObject<float>(object, object_template, "gravity"   ));
@@ -189,6 +187,7 @@ void PlatformerObjectFactory::SpawnEnemy(ni::ObjectBlueprint object, ni::ObjectT
 
 	update->Init(*graphics.get(), *physics.get());
 
+	mode.GetComponentStore().RegisterTagForId        (id, PlatformerGameMode::kEnemyTag);
 	mode.GetComponentStore().AttachPhysicsComponent  (id, std::move(physics));
 	mode.GetComponentStore().AttachUpdateComponent   (id, std::move(update));
 	mode.GetComponentStore().AttachGraphicsComponent (id, std::move(graphics));

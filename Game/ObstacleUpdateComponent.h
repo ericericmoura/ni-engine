@@ -26,15 +26,17 @@ protected:
 	ni::Id<ni::GameObjectTag> player_id_;
 	sf::Vector2f collision_box_size_;
 	
-	virtual void CollideTop	  (sf::FloatRect collision_box);
-	virtual void CollideBottom(sf::FloatRect collision_box);
-	virtual void CollideFront (sf::FloatRect collision_box);
-	virtual void CollideLeft  (sf::FloatRect collision_box);
-	virtual void CollideRight (sf::FloatRect collision_box);
+	virtual void CollideTop	  (sf::FloatRect collision_box, ni::Id<ni::GameObjectTag> object_id);
+	virtual void CollideBottom(sf::FloatRect collision_box, ni::Id<ni::GameObjectTag> object_id);
+	virtual void CollideFront (sf::FloatRect collision_box, ni::Id<ni::GameObjectTag> object_id);
+	virtual void CollideLeft  (sf::FloatRect collision_box, ni::Id<ni::GameObjectTag> object_id);
+	virtual void CollideRight (sf::FloatRect collision_box, ni::Id<ni::GameObjectTag> object_id);
 
 private:
 	bool colliding_ = false;
 
 	void HandleCollisions();
+
+	void HandleCollisionById(ni::Id<ni::GameObjectTag> object, const sf::FloatRect& collision_box, const sf::Vector2f& collision_box_center_position);
 };
 

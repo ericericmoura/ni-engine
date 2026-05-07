@@ -68,5 +68,9 @@ void EnemyUpdateComponent::UpdatePlayerTrackingStatus()
 	horizontal_distance_to_player_ = std::abs(direction_to_player_.x);
 	vertical_distance_to_player_   = std::abs(direction_to_player_.y);
 
+	if (direction_to_player_.length() == 0)
+	{
+		return;
+	}
 	direction_to_player_ = direction_to_player_.normalized();
 }

@@ -62,3 +62,26 @@ int EnemyUpdateComponent::GetDirectionToPlayer()
 
 	return sign;
 }
+
+void EnemyUpdateComponent::CheckCollisionWithPlayer()
+{
+	auto physics        = static_cast<CharacterPhysicsComponent*>(component_locator_.GetPhysicsComponent(owner_id_ ));
+	auto player_physics = static_cast<CharacterPhysicsComponent*>(component_locator_.GetPhysicsComponent(player_id_));
+	
+	ni::TransformComponent* transform = component_locator_.GetTransformComponent(owner_id_);
+	ni::TransformComponent* player_transform = component_locator_.GetTransformComponent(player_id_);
+
+	if (physics->GetFeetBounds(transform->GetTransformable().getPosition()).findIntersection(player_physics->GetHeadBounds(player_transform->GetTransformable().getPosition())))
+	{
+		CollideBottom();
+	}
+	if (physics->GetSideBounds(transform->GetTransformable().getPosition(),  1).findIntersection(player_physics->GetSideBounds(player_transform->GetTransformable().getPosition(), -1)) ||
+		physics->GetSideBounds(transform->GetTransformable().getPosition(), -1).findIntersection(player_physics->GetSideBounds(player_transform->GetTransformable().getPosition(), 1)))
+	{
+		CollideSides();
+	}
+	if (physics->GetHeadBounds(transform->GetTransformable().getPosition()).findIntersection(player_physics->GetFeetBounds(player_transform->GetTransformable().getPosition())))
+	{
+		CollideTop();
+	}
+}

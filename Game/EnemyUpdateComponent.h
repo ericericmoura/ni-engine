@@ -18,12 +18,18 @@ public:
 	void Init(ni::AnimatedGraphicsComponent& graphics, CharacterPhysicsComponent& physics);
 	void Update() override;
 
-	int GetDirectionToPlayer();
+	int  GetDirectionToPlayer();
 
 private: 
 	inline static const int kAnimationRow = 17;
 	inline static const std::string kWalkAnimationKey = "walk";
 
 	ni::Id<ni::GameObjectTag> player_id_;
+
+	virtual void CollideSides();
+	virtual void CollideTop();
+	virtual void CollideBottom();
+
+	void CheckCollisionWithPlayer();
 };
 

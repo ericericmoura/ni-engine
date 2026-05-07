@@ -13,8 +13,8 @@ public:
 	void SolveTopCollision   (sf::FloatRect collision_box, ni::ComponentLocator& locator, ni::Id<ni::GameObjectTag> id) override;
 	void SolveBottomCollision(sf::FloatRect collision_box, ni::ComponentLocator& locator, ni::Id<ni::GameObjectTag> id) override;
 	void SolveFrontCollision (sf::FloatRect collision_box, ni::ComponentLocator& locator, ni::Id<ni::GameObjectTag> id) override;
-	void SolveRightCollision(sf::FloatRect collision_box, ni::ComponentLocator& locator, ni::Id<ni::GameObjectTag> id) override;
-	void SolveLeftCollision(sf::FloatRect collision_box, ni::ComponentLocator& locator, ni::Id<ni::GameObjectTag> id) override;
+	void SolveRightCollision (sf::FloatRect collision_box, ni::ComponentLocator& locator, ni::Id<ni::GameObjectTag> id) override;
+	void SolveLeftCollision  (sf::FloatRect collision_box, ni::ComponentLocator& locator, ni::Id<ni::GameObjectTag> id) override;
 
 private:
 	void KillCharacter(ni::ComponentLocator& locator, ni::Id<ni::GameObjectTag> id);

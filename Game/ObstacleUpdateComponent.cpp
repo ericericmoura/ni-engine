@@ -22,7 +22,6 @@ ObstacleUpdateComponent::ObstacleUpdateComponent(ni::ComponentLocator& component
 	collision_box_size_ = collision_box_size;	
 }
 
-
 void ObstacleUpdateComponent::RegisterCollisionComponent(std::unique_ptr<ObstacleCollisionComponent> collision_component)
 {
 	collision_components_.push_back(std::move(collision_component));

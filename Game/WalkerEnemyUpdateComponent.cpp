@@ -6,20 +6,27 @@
 #include <NiEngine/ComponentLocator.h>
 #include <NiEngine/GameObjectTag.h>
 #include <NiEngine/Id.h>
-#include <NiEngine/MathUtility.h>
 
 #include "CharacterPhysicsComponent.h"
 #include "PlatformerGameMode.h"
 #include "PlayerUpdateComponent.h"
 #include "EnemyUpdateComponent.h"
-#include <NiEngine/TransformComponent.h>
 
-WalkerEnemyUpdateComponent::WalkerEnemyUpdateComponent(ni::ComponentLocator& component_locator, ni::Id<ni::GameObjectTag> owner_id) 
+WalkerEnemyUpdateComponent::WalkerEnemyUpdateComponent(ni::ComponentLocator& component_locator, ni::Id<ni::GameObjectTag> owner_id, int start_movement_direction)
 	: EnemyUpdateComponent(component_locator, owner_id)
-{}
+{
+	movement_direction = start_movement_direction;
+}
 
 void WalkerEnemyUpdateComponent::Init(ni::AnimatedGraphicsComponent& graphics, CharacterPhysicsComponent& physics)
 {
+	physics.OnCollideLeft([this]() {
+		movement_direction =  1;
+	});
+	physics.OnCollideRight([this]() {
+		movement_direction = -1;
+	});
+
 	ni::Animation walk_animation;
 	walk_animation.key_ = kWalkAnimationKey;
 	walk_animation.start_frame = 1;
@@ -43,22 +50,10 @@ void WalkerEnemyUpdateComponent::Update()
 	if (distance_to_player_ < 16.0f)
 	{
 		EnemyUpdateComponent::Update();
-		return;
-	}
-	if (horizontal_distance_to_player_ < 8.0f)
-	{
-		return;
-	}
-	int dir = ni::MathUtility::GetSign(direction_to_player_.x);
-
+	}	
 	if (physics)
 	{
-		physics->Move(dir);
-	}
-	if (dir == 0)
-	{
-		graphics->SetFrame(kAnimationRow, 0);
-		return;
+		physics->Move(movement_direction);
 	}
 	graphics->Play(kWalkAnimationKey, .1, true);
 }

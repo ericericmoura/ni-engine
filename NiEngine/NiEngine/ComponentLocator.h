@@ -24,10 +24,11 @@ public:
 	virtual std::vector<GraphicsComponent*> GetGraphicsComponents(Id<GameObjectTag> id) = 0;
 	virtual AnimatedGraphicsComponent* GetFirstAnimatedGraphicsComponent(Id<GameObjectTag> id) = 0;
 
-	virtual Id<GameObjectTag> GetIdByTag(std::string tag) = 0;
+	virtual Id<GameObjectTag> GetIdByTag (std::string tag) = 0;
+	virtual std::vector<ni::Id<ni::GameObjectTag>> GetIdsByTag(std::string tag) = 0;
 
 protected:
-	std::unordered_map<std::string, Id<GameObjectTag>> id_tag_map_;
+	std::unordered_map<std::string, std::vector<Id<GameObjectTag>>> id_tag_map_;
 };
 
 }

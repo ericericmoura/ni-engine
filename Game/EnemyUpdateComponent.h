@@ -21,9 +21,7 @@ protected:
 	bool is_dead_ = false;
 	ni::Id<ni::GameObjectTag> player_id_;
 
-	float        distance_to_player_            = 0.0f;
-	float        horizontal_distance_to_player_ = 0.0f;
-	float        vertical_distance_to_player_   = 0.0f;
+	float        distance_to_player_  = 0.0f;
 	sf::Vector2f direction_to_player_ = {};
 
 	void UpdatePlayerTrackingStatus();

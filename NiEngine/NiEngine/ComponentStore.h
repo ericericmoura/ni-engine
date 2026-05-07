@@ -76,6 +76,9 @@ public:
 	TransformComponent*             GetTransformComponent(Id<GameObjectTag> id)				override;
 	PhysicsComponent*	            GetPhysicsComponent(Id<GameObjectTag> id)               override;
 	AnimatedGraphicsComponent*      GetFirstAnimatedGraphicsComponent(Id<GameObjectTag> id) override;
+	UpdateComponent* GetUpdateComponent(Id<GameObjectTag> id) override;
+
+	std::vector<ni::Id<ni::GameObjectTag>> GetIdsByTag(std::string tag) override;
 	Id<GameObjectTag> GetIdByTag(std::string tag) override;
 
 	void RegisterTagForId(Id<GameObjectTag> target, std::string tag);
@@ -84,8 +87,6 @@ public:
 	void Update();
 	void Render(sf::RenderTarget& target, sf::RenderStates states, BitmapStore& store);
 
-	// Inherited via ComponentLocator
-	UpdateComponent* GetUpdateComponent(Id<GameObjectTag> id) override;
 
 };
 

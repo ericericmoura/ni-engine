@@ -38,6 +38,9 @@ public:
 	int OnJumping(std::function<void()> callback) { return on_jumping_.Subscribe(callback); }
 	int OnLanding(std::function<void()> callback) { return on_landing_.Subscribe(callback); }
 
+	int OnCollideLeft (std::function<void()> callback) { return on_collide_left_ .Subscribe(callback); }
+	int OnCollideRight(std::function<void()> callback) { return on_collide_right_.Subscribe(callback); }
+
 	sf::FloatRect GetFeetBounds (sf::Vector2f position) const;
 	sf::FloatRect GetHeadBounds (sf::Vector2f position) const;
 	sf::FloatRect GetFrontBounds(sf::Vector2f position) const;
@@ -54,6 +57,9 @@ private:
 	ni::Subject<> on_falling_;
 	ni::Subject<> on_jumping_;
 	ni::Subject<> on_landing_;
+
+	ni::Subject<> on_collide_left_ ;
+	ni::Subject<> on_collide_right_;
 
 	sf::Vector2f velocity_;
 	sf::Vector2i size_;

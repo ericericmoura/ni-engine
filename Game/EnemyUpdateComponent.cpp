@@ -63,10 +63,7 @@ void EnemyUpdateComponent::UpdatePlayerTrackingStatus()
 	ni::TransformComponent* player_transform = component_locator_.GetTransformComponent(player_id_);
 
 	direction_to_player_ = player_transform->GetTransformable().getPosition() - transform->GetTransformable().getPosition();
-	
 	distance_to_player_  = direction_to_player_.length();
-	horizontal_distance_to_player_ = std::abs(direction_to_player_.x);
-	vertical_distance_to_player_   = std::abs(direction_to_player_.y);
 
 	if (direction_to_player_.length() == 0)
 	{

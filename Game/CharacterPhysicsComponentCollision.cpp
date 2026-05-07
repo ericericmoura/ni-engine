@@ -202,6 +202,15 @@ void CharacterPhysicsComponent::CollideSides(ni::TransformComponent& transform_c
 	snap_position.x = block_side + size_.x/2.0f * -sign;
 
 	transform_component.GetTransformable().setPosition(snap_position);
+
+	if (sign == -1)
+	{
+		on_collide_left_.Notify();
+	}
+	else
+	{
+		on_collide_right_.Notify();
+	}
 }
 
 void CharacterPhysicsComponent::SetIsOnGround(bool is_on_non_tile_ground)

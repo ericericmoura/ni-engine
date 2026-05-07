@@ -127,7 +127,7 @@ ni::UpdateComponent* ni::ComponentStore::GetUpdateComponent(Id<GameObjectTag> id
 	return it->second.get();
 }
 
-ni::Id<ni::GameObjectTag> ni::ComponentStore::GetIdByTag(std::string tag)
+std::vector<ni::Id<ni::GameObjectTag>> ni::ComponentStore::GetIdsByTag(std::string tag)
 {
 	auto it = id_tag_map_.find(tag);
 	if (it == id_tag_map_.end())
@@ -137,6 +137,11 @@ ni::Id<ni::GameObjectTag> ni::ComponentStore::GetIdByTag(std::string tag)
 #endif // _DEBUG
 	}
 	return it->second;
+}
+
+ni::Id<ni::GameObjectTag> ni::ComponentStore::GetIdByTag(std::string tag)
+{
+	return GetIdsByTag(tag).front();
 }
 
 void ni::ComponentStore::Clear()

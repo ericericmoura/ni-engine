@@ -181,7 +181,7 @@ void PlatformerObjectFactory::SpawnEnemy(ni::ObjectBlueprint object, ni::ObjectT
 
 	auto graphics = std::make_unique<ni::AnimatedGraphicsComponent>(texture_key, texture_coordinates.size, 1);
 
-	auto update = std::make_unique<WalkerEnemyUpdateComponent>(mode.GetComponentStore(), id);
+	auto update = std::make_unique<WalkerEnemyUpdateComponent>(mode.GetComponentStore(), id, 1);
 
 	ni::TransformComponent transform;
 	transform.GetTransformable().setPosition(object.position_);

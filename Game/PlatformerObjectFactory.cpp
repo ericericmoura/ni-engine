@@ -25,7 +25,7 @@
 #include "PlayerUpdateComponent.h"
 #include "ExitDoorUpdateComponent.h"
 #include "ObstacleSolidCollisionComponent.h"
-#include "EnemyUpdateComponent.h"
+#include "WalkerEnemyUpdateComponent.h"
 
 void PlatformerObjectFactory::SpawnObject(ni::ObjectBlueprint object, ni::ObjectTemplateBlueprint& object_template, const std::vector<ni::TilesetBlueprint>& tileset_blueprints, ni::GameMode& mode, int type)
 {
@@ -181,7 +181,7 @@ void PlatformerObjectFactory::SpawnEnemy(ni::ObjectBlueprint object, ni::ObjectT
 
 	auto graphics = std::make_unique<ni::AnimatedGraphicsComponent>(texture_key, texture_coordinates.size, 1);
 
-	auto update = std::make_unique<EnemyUpdateComponent>(mode.GetComponentStore(), id);
+	auto update = std::make_unique<WalkerEnemyUpdateComponent>(mode.GetComponentStore(), id);
 
 	ni::TransformComponent transform;
 	transform.GetTransformable().setPosition(object.position_);

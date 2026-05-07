@@ -26,7 +26,9 @@ public:
 
 	void Move(float dir);
 	void Jump();
+	void ForceJump();
 	void FallFromPlatform();
+	sf::Vector2f GetVelocity() const { return velocity_;  };
 
 	void SetJumpForce(float new_value) { jump_force_ = new_value; }
 	void SetSpeed    (float new_value) { speed_      = new_value; }

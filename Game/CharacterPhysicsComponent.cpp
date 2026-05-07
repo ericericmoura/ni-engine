@@ -1,6 +1,5 @@
 #include "CharacterPhysicsComponent.h"
 
-#include <iostream>
 #include <cstdlib>
 
 #include <SFML/System/Vector2.hpp>
@@ -59,6 +58,11 @@ void CharacterPhysicsComponent::Jump()
 	{
 		return;
 	}
+	ForceJump();
+}
+
+void CharacterPhysicsComponent::ForceJump()
+{
 	velocity_.y = -jump_force_;
 	state_ = CharacterState::Jumping;
 

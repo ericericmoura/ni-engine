@@ -1,7 +1,6 @@
 #pragma once
 
-#include <string>
-
+#include <SFML/System/Vector2.hpp>
 #include <NiEngine/UpdateComponent.h>
 #include <NiEngine/AnimatedGraphicsComponent.h>
 #include <NiEngine/ComponentLocator.h>
@@ -15,20 +14,24 @@ class EnemyUpdateComponent : public ni::UpdateComponent
 public:
 	EnemyUpdateComponent(ni::ComponentLocator& component_locator, ni::Id<ni::GameObjectTag> owner_id);
 
-	void Init(ni::AnimatedGraphicsComponent& graphics, CharacterPhysicsComponent& physics);
-	void Update() override;
+	virtual void Init(ni::AnimatedGraphicsComponent& graphics, CharacterPhysicsComponent& physics) = 0;
+	virtual void Update() override;
 
-	int  GetDirectionToPlayer();
-
-private: 
-	inline static const int kAnimationRow = 17;
-	inline static const std::string kWalkAnimationKey = "walk";
-
+protected:
+	bool is_dead_ = false;
 	ni::Id<ni::GameObjectTag> player_id_;
 
-	virtual void CollideSides();
-	virtual void CollideTop();
-	virtual void CollideBottom();
+	float        distance_to_player_            = 0.0f;
+	float        horizontal_distance_to_player_ = 0.0f;
+	float        vertical_distance_to_player_   = 0.0f;
+	sf::Vector2f direction_to_player_ = {};
+
+	void UpdatePlayerTrackingStatus();
+
+private: 
+	virtual void CollideSides()  = 0;
+	virtual void CollideTop()    = 0;
+	virtual void CollideBottom() = 0;
 
 	void CheckCollisionWithPlayer();
 };

@@ -2,7 +2,9 @@
 
 #include <cmath>
 #include <algorithm>
+#include <cstdlib>
 
+#include <SFML/Graphics/Rect.hpp>
 #include <SFML/System/Vector2.hpp>
 #include <NiEngine/ComponentLocator.h>
 #include <NiEngine/GameObjectTag.h>
@@ -45,6 +47,20 @@ void MovingObstacleUpdateComponent::Update()
 	ObstacleUpdateComponent::Update();
 }
 
+void MovingObstacleUpdateComponent::CollideTop(sf::FloatRect collision_box)
+{	
+	for (auto& collision : collision_components_)
+	{
+		collision->SolveTopCollision(collision_box, component_locator_, player_id_);
+	}
+	
+	if (moving_)
+	{
+		ni::TransformComponent* player_transform = component_locator_.GetTransformComponent(player_id_);
+		if (player_transform) player_transform->GetTransformable().move({ amount_moved_x_, 0});
+	}
+}
+
 void MovingObstacleUpdateComponent::LocatePlayer()
 {
 	if (player_id_.id_ == -1)
@@ -84,10 +100,13 @@ void MovingObstacleUpdateComponent::Move()
 	{
 		moving_ = false;
 	}
+	sf::Vector2f old_pos = transform->GetTransformable().getPosition();
 	sf::Vector2f new_pos = transform->GetTransformable().getPosition();
 
 	new_pos.x = std::lerp(start_position_.x, target_position_.x, time_passed / delay_in_seconds_);
 	new_pos.y = std::lerp(start_position_.y, target_position_.y, time_passed / delay_in_seconds_);
+
+	amount_moved_x_ = std::abs(new_pos.x - old_pos.x);
 
 	transform->GetTransformable().setPosition(new_pos);
 }

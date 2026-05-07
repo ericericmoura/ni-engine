@@ -2,10 +2,9 @@
 
 #include "ObstacleUpdateComponent.h"
 
-#include <unordered_map>
-
 #include <SFML/System/Vector2.hpp>
 #include <SFML/System/Time.hpp>
+#include <SFML/Graphics/Rect.hpp>
 #include <NiEngine/ComponentLocator.h>
 #include <NiEngine/GameObjectTag.h>
 #include <NiEngine/Id.h>
@@ -25,6 +24,7 @@ public:
 	);
 	
 	void Update() override;
+	virtual void CollideTop(sf::FloatRect collision_box) override;
 
 private:
 	sf::Vector2i movement_position_offset_ = {};
@@ -32,6 +32,8 @@ private:
 
 	sf::Vector2f target_position_ = {};
 	sf::Vector2f start_position_  = {};
+
+	float amount_moved_x_ = 0;
 
 	float    delay_in_seconds_ = 0;
 	sf::Time time_since_movement_started_;

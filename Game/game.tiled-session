@@ -1,17 +1,18 @@
 {
     "activeFile": "maps/level_4/level_4.tmx",
     "expandedProjectPaths": [
-        "maps/level_10",
-        "maps/level_02",
         "maps/level_4",
-        "maps/level_9",
-        "maps/level_01",
-        "maps/level_2",
-        ".",
         "maps/level_8",
+        "maps/level_10",
+        "maps/level_7",
+        "maps/level_02",
+        "maps/templates",
+        "maps/level_9",
         "tilesets",
+        "maps/level_2",
         "maps",
-        "maps/templates"
+        "maps/level_01",
+        "."
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -81,22 +82,19 @@
             "expandedObjectLayers": [
                 8
             ],
-            "scale": 2,
-            "selectedLayer": 3,
+            "scale": 3,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 223.25,
-                "y": 182
+                "x": 244.66666666666666,
+                "y": 168.83333333333331
             }
         },
         "maps/level_7/level_7.json": {
-            "expandedObjectLayers": [
-                8
-            ],
             "scale": 2.539270833333333,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 286.1057554251959,
-                "y": 227.23058620831114
+                "x": 239.8326291176109,
+                "y": 160.0853263321984
             }
         },
         "maps/level_8/level_8.json": {
@@ -163,7 +161,7 @@
             "scaleInEditor": 8
         }
     },
-    "last.exportedFilePath": "C:/Users/Eric/Documents/01_Projects/02_Games/04_CustomEngine/Game/Game/maps/level_12",
+    "last.exportedFilePath": "C:/Users/Eric/Documents/01_Projects/02_Games/04_CustomEngine/Game/Game/maps/level_13",
     "last.externalTilesetPath": "C:/Users/Eric/Documents/01_Projects/02_Games/04_CustomEngine/Game/Game/tilesets",
     "last.imagePath": "C:/Users/Eric/Documents/01_Projects/02_Games/04_CustomEngine/Game/Game/graphics",
     "last.objectTemplatePath": "C:/Users/Eric/Documents/01_Projects/02_Games/04_CustomEngine/Game/Game/maps/templates",
@@ -177,13 +175,15 @@
     "openFiles": [
         "tilesets/karsioriart_tiles_and_backgrounds.tsx",
         "tilesets/kenney_1bit.json",
-        "maps/level_4/level_4.tmx"
+        "maps/level_4/level_4.tmx",
+        "maps/level_7/level_7.json"
     ],
     "project": "game.tiled-project",
     "property.type": "file",
     "recentFiles": [
         "tilesets/karsioriart_tiles_and_backgrounds.tsx",
         "tilesets/kenney_1bit.json",
+        "maps/level_7/level_7.json",
         "maps/level_4/level_4.tmx",
         "maps/level_8/level_8.json",
         "maps/level_9/level_9.json",
@@ -192,8 +192,7 @@
         "maps/level_01/level_01.tmx",
         "maps/level_2/level_2.tmx",
         "maps/level_02/level_02.tmx",
-        "maps/rules/ground_autotile_rules.tmx",
-        "tilesets/transparent_tiles.tsx"
+        "maps/rules/ground_autotile_rules.tmx"
     ],
     "tileset.lastUsedExportFilter": "JSON tileset files (*.tsj *.json)",
     "tileset.lastUsedFormat": "tsx",

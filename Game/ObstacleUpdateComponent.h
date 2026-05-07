@@ -21,6 +21,8 @@ public:
 	virtual void Update() override;
 
 protected:
+	std::vector<std::unique_ptr<ObstacleCollisionComponent>> collision_components_;
+
 	ni::Id<ni::GameObjectTag> player_id_;
 	sf::Vector2f collision_box_size_;
 	
@@ -31,8 +33,6 @@ protected:
 	virtual void CollideRight (sf::FloatRect collision_box);
 
 private:
-	std::vector<std::unique_ptr<ObstacleCollisionComponent>> collision_components_;
-
 	bool colliding_ = false;
 
 	void HandleCollisions();

@@ -20,15 +20,17 @@ enum CharacterState
 
 class CharacterPhysicsComponent : public ni::PhysicsComponent
 {
-public:
-	inline static const float GRAVITY = 20.0f;
-	
+public:	
 	CharacterPhysicsComponent(sf::Vector2i character_size);
 	void PhysicsUpdate(ni::TransformComponent& transform_component, const ni::Tilemap& current_tilemap, float delta) override;
 
 	void Move(float dir);
 	void Jump();
 	void FallFromPlatform();
+
+	void SetJumpForce(float new_value) { jump_force_ = new_value; }
+	void SetSpeed    (float new_value) { speed_      = new_value; }
+	void SetGravity  (float new_value) { gravity_    = new_value; }
 
 	int OnFalling(std::function<void()> callback) { return on_falling_.Subscribe(callback); }
 	int OnJumping(std::function<void()> callback) { return on_jumping_.Subscribe(callback); }
@@ -54,8 +56,9 @@ private:
 	sf::Vector2f velocity_;
 	sf::Vector2i size_;
 
-	float speed_ = 100;
-	float jump_force_ = 400;
+	float speed_      = 100.0f;
+	float jump_force_ = 400.0f;
+	float gravity_    = 20.0f;
 	
 	CharacterState state_ = CharacterState::Falling;
 

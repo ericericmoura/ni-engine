@@ -16,7 +16,7 @@ void CharacterPhysicsComponent::PhysicsUpdate(ni::TransformComponent& transform_
 {
 	if (state_ == CharacterState::Falling || state_ == CharacterState::Jumping)
 	{
-		velocity_.y += GRAVITY;
+		velocity_.y += gravity_;
 
 		if (velocity_.y > 0 && state_ != CharacterState::Falling)
 		{

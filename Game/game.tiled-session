@@ -1,18 +1,18 @@
 {
     "activeFile": "maps/level_4/level_4.tmx",
     "expandedProjectPaths": [
-        "maps/level_4",
-        "maps/level_8",
-        "maps/level_10",
-        "maps/level_7",
-        "maps/level_02",
-        "maps/templates",
-        "maps/level_9",
-        "tilesets",
-        "maps/level_2",
         "maps",
+        "tilesets",
+        "maps/level_9",
+        "maps/level_4",
+        "maps/level_10",
+        "maps/templates",
+        "maps/level_7",
         "maps/level_01",
-        "."
+        "maps/level_8",
+        ".",
+        "maps/level_2",
+        "maps/level_02"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -82,11 +82,11 @@
             "expandedObjectLayers": [
                 8
             ],
-            "scale": 3,
+            "scale": 2,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 244.66666666666666,
-                "y": 168.83333333333331
+                "x": 247,
+                "y": 173.25
             }
         },
         "maps/level_7/level_7.json": {
@@ -161,7 +161,7 @@
             "scaleInEditor": 8
         }
     },
-    "last.exportedFilePath": "C:/Users/Eric/Documents/01_Projects/02_Games/04_CustomEngine/Game/Game/maps/level_13",
+    "last.exportedFilePath": "C:/Users/Eric/Documents/01_Projects/02_Games/04_CustomEngine/Game/Game/maps/level_15",
     "last.externalTilesetPath": "C:/Users/Eric/Documents/01_Projects/02_Games/04_CustomEngine/Game/Game/tilesets",
     "last.imagePath": "C:/Users/Eric/Documents/01_Projects/02_Games/04_CustomEngine/Game/Game/graphics",
     "last.objectTemplatePath": "C:/Users/Eric/Documents/01_Projects/02_Games/04_CustomEngine/Game/Game/maps/templates",
@@ -179,11 +179,11 @@
         "maps/level_7/level_7.json"
     ],
     "project": "game.tiled-project",
-    "property.type": "file",
+    "property.type": "float",
     "recentFiles": [
+        "maps/level_7/level_7.json",
         "tilesets/karsioriart_tiles_and_backgrounds.tsx",
         "tilesets/kenney_1bit.json",
-        "maps/level_7/level_7.json",
         "maps/level_4/level_4.tmx",
         "maps/level_8/level_8.json",
         "maps/level_9/level_9.json",

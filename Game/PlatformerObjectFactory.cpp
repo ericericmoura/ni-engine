@@ -25,6 +25,7 @@
 #include "PlayerUpdateComponent.h"
 #include "ExitDoorUpdateComponent.h"
 #include "ObstacleSolidCollisionComponent.h"
+#include "EnemyUpdateComponent.h"
 
 void PlatformerObjectFactory::SpawnObject(ni::ObjectBlueprint object, ni::ObjectTemplateBlueprint& object_template, const std::vector<ni::TilesetBlueprint>& tileset_blueprints, ni::GameMode& mode, int type)
 {
@@ -54,9 +55,14 @@ void PlatformerObjectFactory::SpawnObject(ni::ObjectBlueprint object, ni::Object
 		break;
 	case ObjectTypes::ExitDoor:
 		SpawnExitDoor(object, object_template, texture_key, texture_coords, mode);
+		break;
+	case ObjectTypes::Enemy:
+		SpawnEnemy(object, object_template, texture_key, texture_coords, mode);
+		break;
 	}
 }
 
+// SPAWN PLAYER
 void PlatformerObjectFactory::SpawnPlayer(ni::ObjectBlueprint object, ni::ObjectTemplateBlueprint& object_template, std::string texture_key, sf::IntRect texture_coordinates, ni::GameMode& mode)
 {
 	ni::Id<ni::GameObjectTag> id = mode.CreateGameObject();
@@ -64,6 +70,11 @@ void PlatformerObjectFactory::SpawnPlayer(ni::ObjectBlueprint object, ni::Object
 	mode.GetComponentStore().RegisterTagForId(id, PlatformerGameMode::kPlayerTag);
 
 	auto physics  = std::make_unique<CharacterPhysicsComponent>(texture_coordinates.size);
+
+	physics->SetGravity  (GetAttributeFromObject<float>(object, object_template, "gravity"   ));
+	physics->SetSpeed    (GetAttributeFromObject<float>(object, object_template, "speed"     ));
+	physics->SetJumpForce(GetAttributeFromObject<float>(object, object_template, "jump_force"));
+
 	auto graphics = std::make_unique<ni::AnimatedGraphicsComponent>(texture_key, texture_coordinates.size, 1);
 
 	auto& platformer_mode = static_cast<PlatformerGameMode&>(mode);
@@ -82,28 +93,22 @@ void PlatformerObjectFactory::SpawnPlayer(ni::ObjectBlueprint object, ni::Object
 	mode.GetComponentStore().AttachTransformComponent(id, transform);
 }
 
+// SPAWN MOVING OBJECT
 void PlatformerObjectFactory::SpawnMovingObject(ni::ObjectBlueprint object, ni::ObjectTemplateBlueprint& object_template, std::string texture_key, sf::IntRect texture_coordinates, ni::GameMode& mode, std::string object_tag)
 {
 	sf::Vector2f movement_offset = {};
-	movement_offset.y    = object_template.properties_map_.at("movement_offset_y").GetValue<float>();
-	movement_offset.x    = object_template.properties_map_.at("movement_offset_x").GetValue<float>();
-	float movement_delay = object_template.properties_map_.at("movement_delay")   .GetValue<float>();
+	movement_offset.y = GetAttributeFromObject<float>(object, object_template, "movement_offset_y");
+	movement_offset.x = GetAttributeFromObject<float>(object, object_template, "movement_offset_x");
+
+	float movement_delay = GetAttributeFromObject<float>(object, object_template, "movement_delay");
 
 	sf::Vector2i repeat;
-	repeat.y = object_template.properties_map_.at("repeat_y").GetValue<int>();
-	repeat.x = object_template.properties_map_.at("repeat_x").GetValue<int>();
+	repeat.y = GetAttributeFromObject<int>(object, object_template, "repeat_y");
+	repeat.x = GetAttributeFromObject<int>(object, object_template, "repeat_x");
 
-	bool harmful = object_template.properties_map_.at("harmful").GetValue<bool>();
+	bool harmful = GetAttributeFromObject<bool>(object, object_template, "harmful");
 
-	float trigger_distance = object_template.properties_map_.at("trigger_distance").GetValue<float>();
-
-	if (object.properties_.contains("movement_offset_y")) movement_offset.y = object.properties_.at("movement_offset_y").GetValue<float>();
-	if (object.properties_.contains("movement_offset_x")) movement_offset.x = object.properties_.at("movement_offset_x").GetValue<float>();
-	if (object.properties_.contains("repeat_y"         )) repeat.y = object.properties_.at("repeat_y").GetValue<int>();
-	if (object.properties_.contains("repeat_x"         )) repeat.x = object.properties_.at("repeat_x").GetValue<int>();
-	if (object.properties_.contains("movement_delay"   )) movement_delay    = object.properties_.at("movement_delay"   ).GetValue<float>();
-	if (object.properties_.contains("harmful"          )) harmful = object.properties_.at("harmful").GetValue<bool>();
-	if (object.properties_.contains("trigger_distance" )) trigger_distance = object.properties_.at("trigger_distance").GetValue<float>();
+	float trigger_distance = GetAttributeFromObject<float>(object, object_template, "trigger_distance");
 
 	ni::Id<ni::GameObjectTag> id = mode.CreateGameObject();
 
@@ -146,6 +151,7 @@ void PlatformerObjectFactory::SpawnMovingObject(ni::ObjectBlueprint object, ni::
 	mode.GetComponentStore().AttachTransformComponent(id, transform);
 }
 
+// SPAWN EXIT
 void PlatformerObjectFactory::SpawnExitDoor(ni::ObjectBlueprint object, ni::ObjectTemplateBlueprint& object_template, std::string texture_key, sf::IntRect texture_coordinates, ni::GameMode& mode)
 {
 	ni::Id<ni::GameObjectTag> id = mode.CreateGameObject();
@@ -161,6 +167,29 @@ void PlatformerObjectFactory::SpawnExitDoor(ni::ObjectBlueprint object, ni::Obje
 	ni::TransformComponent transform;
 	transform.GetTransformable().setPosition(object_top_left_position);
 
+	mode.GetComponentStore().AttachUpdateComponent   (id, std::move(update));
+	mode.GetComponentStore().AttachGraphicsComponent (id, std::move(graphics));
+	mode.GetComponentStore().AttachTransformComponent(id, transform);
+}
+
+void PlatformerObjectFactory::SpawnEnemy(ni::ObjectBlueprint object, ni::ObjectTemplateBlueprint& object_template, std::string texture_key, sf::IntRect texture_coordinates, ni::GameMode& mode)
+{
+	ni::Id<ni::GameObjectTag> id = mode.CreateGameObject();
+
+	auto physics  = std::make_unique<CharacterPhysicsComponent>(texture_coordinates.size);
+	physics->SetSpeed(80.0f);
+
+	auto graphics = std::make_unique<ni::AnimatedGraphicsComponent>(texture_key, texture_coordinates.size, 1);
+
+	auto update = std::make_unique<EnemyUpdateComponent>(mode.GetComponentStore(), id);
+
+	ni::TransformComponent transform;
+	transform.GetTransformable().setPosition(object.position_);
+	transform.GetTransformable().setOrigin({ texture_coordinates.size.x / 2.0f, texture_coordinates.size.y / 2.0f });
+
+	update->Init(*graphics.get(), *physics.get());
+
+	mode.GetComponentStore().AttachPhysicsComponent  (id, std::move(physics));
 	mode.GetComponentStore().AttachUpdateComponent   (id, std::move(update));
 	mode.GetComponentStore().AttachGraphicsComponent (id, std::move(graphics));
 	mode.GetComponentStore().AttachTransformComponent(id, transform);

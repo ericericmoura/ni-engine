@@ -106,7 +106,7 @@ void MovingObstacleUpdateComponent::Move()
 	new_pos.x = std::lerp(start_position_.x, target_position_.x, time_passed / delay_in_seconds_);
 	new_pos.y = std::lerp(start_position_.y, target_position_.y, time_passed / delay_in_seconds_);
 
-	amount_moved_x_ = std::abs(new_pos.x - old_pos.x);
+	amount_moved_x_ = new_pos.x - old_pos.x;
 
 	transform->GetTransformable().setPosition(new_pos);
 }

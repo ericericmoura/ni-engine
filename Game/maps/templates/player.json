@@ -7,6 +7,21 @@
      "opacity":1,
      "properties":[
             {
+             "name":"gravity",
+             "type":"float",
+             "value":20
+            }, 
+            {
+             "name":"jump_force",
+             "type":"float",
+             "value":400
+            }, 
+            {
+             "name":"speed",
+             "type":"float",
+             "value":100
+            }, 
+            {
              "name":"type_id",
              "type":"int",
              "value":2

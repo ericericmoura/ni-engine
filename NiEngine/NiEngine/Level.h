@@ -53,7 +53,7 @@ public:
 	void RenderTilemap(sf::RenderTarget& target, sf::RenderStates states, BitmapStore& store);
 
 private:
-	int current_level_ = 12;
+	int current_level_ = 14;
 	int num_of_levels_ = 0;
 	
 	Subject<> last_level_finished_;

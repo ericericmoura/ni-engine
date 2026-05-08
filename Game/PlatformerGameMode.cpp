@@ -39,7 +39,7 @@ PlatformerGameMode::PlatformerGameMode() : hud_(sf::Color::Black, {20, 0}, { 20,
 
 	auto factory = std::make_unique<PlatformerObjectFactory>();
 	level_.RegisterObjectFactory(std::move(factory));
-	level_.SetTotalLevelCount(kTotalLevelCount);
+	level_.SetTotalLevelCount(config.total_level_count_);
 	level_.LoadLevelByIndex(*this, config.start_level_);
 	world_camera_.FitTo(level_.GetCurrentTilemap().GetBounds());
 
@@ -61,7 +61,20 @@ PlatformerGameMode::PlatformerGameMode() : hud_(sf::Color::Black, {20, 0}, { 20,
 	
 	current_transition_ = std::make_unique<ni::WipeScreenTransition>(.8f, transitions_camera_.GetView().getSize(), false, sf::Color::Black);
 	current_transition_->OnTransitionCoveredScreen([this, text_component_index, death_text_component_index]() {
-		if (restart_level_)
+		if (load_next_level_)
+		{			
+			level_.LoadNextLevel(*this);
+			load_next_level_ = false;
+
+			auto text_component = GetLevelTextHUD(text_component_index);
+			if (!text_component)
+			{
+				return;
+			}
+			std::string level_string = std::format("Level {}", level_.GetCurrentLevelIndex());
+			text_component->SetTextString(level_string);
+		}
+		else if (restart_level_)
 		{
 			level_.ReloadLevel(*this);
 			restart_level_ = false;
@@ -77,19 +90,8 @@ PlatformerGameMode::PlatformerGameMode() : hud_(sf::Color::Black, {20, 0}, { 20,
 			text_component->SetTextString(level_string);
 			return;
 		}
-		if (load_next_level_)
-		{
-			level_.LoadNextLevel(*this);
-			load_next_level_ = false;
-
-			auto text_component = GetLevelTextHUD(text_component_index);
-			if (!text_component)
-			{
-				return;
-			}
-			std::string level_string = std::format("Level {}", level_.GetCurrentLevelIndex());
-			text_component->SetTextString(level_string);
-		}
+		restart_level_ = false;
+		load_next_level_ = false;
 	});	
 	current_transition_->OnTransitionFinished([this]() {
 		transitioning_ = false;
@@ -114,7 +116,7 @@ void PlatformerGameMode::RestartLevel()
 void PlatformerGameMode::Update(ni::GameModeController& controller)
 {
 	if ((restart_level_ || load_next_level_) && !transitioning_)
-	{
+	{		
 		current_transition_->Play();
 		transitioning_ = true;
 		return;

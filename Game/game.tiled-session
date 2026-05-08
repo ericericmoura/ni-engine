@@ -108,11 +108,11 @@
             "expandedObjectLayers": [
                 8
             ],
-            "scale": 2.030625,
+            "scale": 2,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 239.58140966451214,
-                "y": 159.5567867036011
+                "x": 275.5,
+                "y": 209
             }
         },
         "maps/level_10/level_10.json": {
@@ -168,8 +168,8 @@
             "scale": 3,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 207.66666666666669,
-                "y": 194.66666666666663
+                "x": 349.66666666666663,
+                "y": 176.66666666666663
             }
         },
         "maps/level_2/level_2.json": {

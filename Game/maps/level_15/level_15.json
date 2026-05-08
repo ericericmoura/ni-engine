@@ -19,7 +19,7 @@
                  "id":16,
                  "template":"..\/templates\/player.json",
                  "x":64,
-                 "y":272
+                 "y":256
                 }, 
                 {
                  "id":18,
@@ -37,7 +37,7 @@
                         }],
                  "template":"..\/templates\/walker_enemy.json",
                  "x":336,
-                 "y":272
+                 "y":256
                 }, 
                 {
                  "id":87,

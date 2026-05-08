@@ -55,7 +55,12 @@
                          "value":1
                         }, 
                         {
-                         "name":"trigger_distance",
+                         "name":"trigger_distance_x",
+                         "type":"float",
+                         "value":48
+                        }, 
+                        {
+                         "name":"trigger_distance_y",
                          "type":"float",
                          "value":48
                         }],

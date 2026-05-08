@@ -37,9 +37,14 @@
              "value":0
             }, 
             {
-             "name":"trigger_distance",
+             "name":"trigger_distance_x",
              "type":"float",
              "value":0
+            }, 
+            {
+             "name":"trigger_distance_y",
+             "type":"float",
+             "value":96
             }, 
             {
              "name":"type_id",

@@ -106,7 +106,8 @@ void PlatformerObjectFactory::SpawnMovingObject(ni::ObjectBlueprint object, ni::
 
 	bool harmful = GetAttributeFromObject<bool>(object, object_template, "harmful");
 
-	float trigger_distance = GetAttributeFromObject<float>(object, object_template, "trigger_distance");
+	float trigger_distance_y = GetAttributeFromObject<float>(object, object_template, "trigger_distance_y");
+	float trigger_distance_x = GetAttributeFromObject<float>(object, object_template, "trigger_distance_x");	
 
 	ni::Id<ni::GameObjectTag> id = mode.CreateGameObject();
 
@@ -126,11 +127,20 @@ void PlatformerObjectFactory::SpawnMovingObject(ni::ObjectBlueprint object, ni::
 
 	sf::Vector2f collision_size;
 	collision_size.x = texture_coordinates.size.x + texture_coordinates.size.x * repeat.x;
-	collision_size.y = texture_coordinates.size.y + texture_coordinates.size.y * repeat.y;
+	collision_size.y = texture_coordinates.size.y + texture_coordinates.size.y * repeat.y;	
+
+	if (trigger_distance_y == 0)
+	{
+		trigger_distance_y = collision_size.y / 2.0f;
+	}
+	if (trigger_distance_x == 0)
+	{
+		trigger_distance_x = collision_size.x / 2.0f;
+	}
 
 	auto update = std::make_unique<MovingObstacleUpdateComponent>(
 		mode.GetComponentStore(), transform, id,
-		sf::Vector2i(movement_offset), trigger_distance == 0 ? collision_size.x / 2.0f : trigger_distance,
+		sf::Vector2i(movement_offset), sf::Vector2f({ trigger_distance_x, trigger_distance_y }),
 		collision_size,
 		movement_delay		
 	);

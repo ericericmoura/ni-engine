@@ -60,11 +60,6 @@
                          "name":"repeat_x",
                          "type":"int",
                          "value":2
-                        }, 
-                        {
-                         "name":"trigger_distance",
-                         "type":"float",
-                         "value":8
                         }],
                  "template":"..\/templates\/crate.json",
                  "x":160,
@@ -87,11 +82,6 @@
                          "name":"repeat_x",
                          "type":"int",
                          "value":2
-                        }, 
-                        {
-                         "name":"trigger_distance",
-                         "type":"float",
-                         "value":8
                         }],
                  "template":"..\/templates\/crate.json",
                  "x":272,
@@ -114,11 +104,6 @@
                          "name":"repeat_x",
                          "type":"int",
                          "value":2
-                        }, 
-                        {
-                         "name":"trigger_distance",
-                         "type":"float",
-                         "value":8
                         }],
                  "template":"..\/templates\/crate.json",
                  "x":224,
@@ -141,11 +126,6 @@
                          "name":"repeat_x",
                          "type":"int",
                          "value":2
-                        }, 
-                        {
-                         "name":"trigger_distance",
-                         "type":"float",
-                         "value":8
                         }],
                  "template":"..\/templates\/crate.json",
                  "x":48,
@@ -157,7 +137,7 @@
                         {
                          "name":"repeat_x",
                          "type":"int",
-                         "value":20
+                         "value":21
                         }],
                  "template":"..\/templates\/spike.json",
                  "x":16,
@@ -180,7 +160,7 @@
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 28, 28, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 28, 28, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 184, 184, 184, 184, 184, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 28, 28, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,

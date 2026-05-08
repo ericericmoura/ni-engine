@@ -129,6 +129,11 @@
                          "name":"repeat_x",
                          "type":"int",
                          "value":2
+                        }, 
+                        {
+                         "name":"trigger_distance_y",
+                         "type":"float",
+                         "value":96
                         }],
                  "template":"..\/templates\/spike.json",
                  "x":320,

@@ -20,7 +20,7 @@ MovingObstacleUpdateComponent::MovingObstacleUpdateComponent(
 	ni::TransformComponent& transform,
 	ni::Id<ni::GameObjectTag> id, 
 	sf::Vector2i position_movement_offset, 
-	float movement_trigger_distance,
+	sf::Vector2f movement_trigger_distance,
 	sf::Vector2f collision_box_size,
 	float delay_in_seconds
 ) : ObstacleUpdateComponent(component_locator, id, collision_box_size)
@@ -70,12 +70,10 @@ void MovingObstacleUpdateComponent::LocatePlayer()
 	ni::TransformComponent* transform        = component_locator_.GetTransformComponent(owner_id_);
 	ni::TransformComponent* player_transform = component_locator_.GetTransformComponent(player_id_);	
 
-	float position_x		= transform->GetTransformable().getPosition().x + collision_box_size_.x / 2.0f;
-	float player_position_x = player_transform->GetTransformable().getPosition().x;
+	sf::Vector2f center_position = transform->GetTransformable().getPosition() + collision_box_size_ / 2.0f;
 
-	float distance = std::max(position_x, player_position_x) - std::min(position_x, player_position_x);
-
-	if (distance <= movement_trigger_distance_)
+	sf::Vector2f distance = player_transform->GetTransformable().getPosition() - center_position;
+	if (std::abs(distance.x) <= movement_trigger_distance_.x && std::abs(distance.y) <= movement_trigger_distance_.y)
 	{
 		TriggerMovement();
 	}

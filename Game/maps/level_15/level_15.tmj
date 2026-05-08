@@ -1,12 +1,4 @@
 { "compressionlevel":-1,
- "editorsettings":
-    {
-     "export":
-        {
-         "format":"json",
-         "target":"level_15.tmj"
-        }
-    },
  "height":20,
  "infinite":false,
  "layers":[

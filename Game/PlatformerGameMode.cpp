@@ -20,13 +20,17 @@
 
 #include "PlatformerObjectFactory.h"
 
-PlatformerGameMode::PlatformerGameMode() : hud_(sf::Color::Transparent, { {10, 10}, {100, 50} }, {0, 0}, { 10, 10 }, false, 3)
+PlatformerGameMode::PlatformerGameMode() : hud_(sf::Color::Black, { {10, 10}, {265, 50} }, {20, 0}, { 10, 10 }, false, 2)
 {	
 	ni::Converter::pixels_per_meters_ = 16;
 
-	auto level_text = std::make_unique<ni::Text>(kMainGameFontKey, "Level 1", sf::Color::White, 40);
+	auto level_text = std::make_unique<ni::Text>(kMainGameFontKey, "Level 1", sf::Color::White, 30);
 	level_text->SetTextOutline(2, sf::Color::Black);
 	int text_component_index = hud_.AddComponent(std::move(level_text));
+
+	auto deaths_text = std::make_unique<ni::Text>(kMainGameFontKey, "Deaths 2", sf::Color::White, 30);
+	deaths_text->SetTextOutline(2, sf::Color::Black);
+	int death_text_component_index = hud_.AddComponent(std::move(deaths_text));
 
 	auto factory = std::make_unique<PlatformerObjectFactory>();
 	level_.RegisterObjectFactory(std::move(factory));

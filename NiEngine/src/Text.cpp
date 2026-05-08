@@ -14,6 +14,8 @@ ni::Text::Text(const std::string& font_filepath, const std::string& string, sf::
 {
 	font_.setSmooth   (smooth);
 	text_.setFillColor(color);	
+
+	bounds_.size = text_.getGlobalBounds().size;
 }
 
 void ni::Text::SetTextOutline(int size, sf::Color color)
@@ -24,7 +26,7 @@ void ni::Text::SetTextOutline(int size, sf::Color color)
 
 void ni::Text::Render(sf::RenderTarget& target, sf::RenderStates states, BitmapStore& store)
 {
-	text_.setPosition(bounds_.getCenter());
+	text_.setPosition(bounds_.position);
 
 	target.draw(text_, states);
 }

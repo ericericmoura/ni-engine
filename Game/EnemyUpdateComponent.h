@@ -22,12 +22,17 @@ public:
 
 protected:
 	bool is_dead_ = false;
+	bool played_death_animation_ = false;
+	bool airborne_ = false;
+
 	ni::Id<ni::GameObjectTag> player_id_;
 
 	float        distance_to_player_  = 0.0f;
 	sf::Vector2f direction_to_player_ = {};
 
 	void UpdatePlayerTrackingStatus();
+	void PlayKnockbackAnimation(CharacterPhysicsComponent& physics, int direction);
+	void KillPlayer();
 
 private: 
 	ni::HitboxComponent head_hurtbox_;

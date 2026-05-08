@@ -21,16 +21,11 @@ public:
 private:
 	inline static const int kAnimationRow = 17;
 	inline static const std::string kWalkAnimationKey = "walk";
-
-	bool played_death_animation_ = false;
-	bool airborne_ = false;
+	
 	int movement_direction = 1;
 
 	void CollideSides() override;
 	void CollideTop() override;
 	void CollideBottom() override;
-
-	void KillPlayer();
-	void PlayDeathAnimation(CharacterPhysicsComponent& physics);
 };
 

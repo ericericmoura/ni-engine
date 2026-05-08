@@ -58,7 +58,7 @@ void WalkerEnemyUpdateComponent::Update()
 
 		if (!played_death_animation_)
 		{
-			PlayDeathAnimation(*physics);
+			PlayKnockbackAnimation(*physics, -movement_direction);
 		}
 		else
 		{
@@ -102,26 +102,4 @@ void WalkerEnemyUpdateComponent::CollideTop()
 void WalkerEnemyUpdateComponent::CollideBottom()
 {
 	KillPlayer();
-}
-
-void WalkerEnemyUpdateComponent::KillPlayer()
-{
-	if (player_id_.id_ == -1)
-	{
-		player_id_ = component_locator_.GetIdByTag(PlatformerGameMode::kPlayerTag);
-	}
-	ni::UpdateComponent* update = component_locator_.GetUpdateComponent(player_id_);
-	auto player_update = static_cast<PlayerUpdateComponent*>(update);
-	player_update->Die();
-}
-
-void WalkerEnemyUpdateComponent::PlayDeathAnimation(CharacterPhysicsComponent& physics)
-{
-	if (!airborne_)
-	{
-		physics.SetJumpForce(150);
-		physics.ForceJump();
-		airborne_ = true;
-	}
-	physics.Move(-movement_direction);
 }

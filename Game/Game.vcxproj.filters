@@ -75,6 +75,9 @@
     <ClCompile Include="WalkerEnemyUpdateComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="JumperEnemyUpdateComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -118,6 +121,9 @@
     </ClInclude>
     <ClInclude Include="LevelStartBlueprint.h">
       <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="JumperEnemyUpdateComponent.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

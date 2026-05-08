@@ -78,3 +78,25 @@ void EnemyUpdateComponent::UpdatePlayerTrackingStatus()
 	}
 	direction_to_player_ = direction_to_player_.normalized();
 }
+
+void EnemyUpdateComponent::PlayKnockbackAnimation(CharacterPhysicsComponent& physics, int direction)
+{
+	if (!airborne_)
+	{
+		physics.SetJumpForce(150);
+		physics.ForceJump();
+		airborne_ = true;
+	}
+	physics.Move(direction);
+}
+
+void EnemyUpdateComponent::KillPlayer()
+{
+	if (player_id_.id_ == -1)
+	{
+		player_id_ = component_locator_.GetIdByTag(PlatformerGameMode::kPlayerTag);
+	}
+	ni::UpdateComponent* update = component_locator_.GetUpdateComponent(player_id_);
+	auto player_update = static_cast<PlayerUpdateComponent*>(update);
+	player_update->Die();
+}

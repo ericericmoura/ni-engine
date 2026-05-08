@@ -1,5 +1,7 @@
 #include "WalkerEnemyUpdateComponent.h"
 
+#include <iostream>
+
 #include <SFML/System/Vector2.hpp>
 #include <NiEngine/AnimatedGraphicsComponent.h>
 #include <NiEngine/Animation.h>
@@ -22,9 +24,11 @@ WalkerEnemyUpdateComponent::WalkerEnemyUpdateComponent(ni::ComponentLocator& com
 void WalkerEnemyUpdateComponent::Init(ni::AnimatedGraphicsComponent& graphics, CharacterPhysicsComponent& physics)
 {
 	physics.OnCollideLeft([this]() {
+		std::cout << "\ncollide left!";
 		movement_direction =  1;
 	});
 	physics.OnCollideRight([this]() {
+		std::cout << "\ncollide right!";
 		movement_direction = -1;
 	});
 

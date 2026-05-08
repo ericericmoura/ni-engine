@@ -199,7 +199,8 @@ void CharacterPhysicsComponent::CollideSides(ni::TransformComponent& transform_c
 	float block_side = collision_block.position.x + collision_block.size.x / 2.0f;
 	block_side += collision_block.size.x / 2.0f * -sign;
 
-	snap_position.x = block_side + size_.x/2.0f * -sign;
+	const float separation = 1.0f; 
+	snap_position.x = block_side + (size_.x / 2.0f + separation) * -sign;
 
 	transform_component.GetTransformable().setPosition(snap_position);
 

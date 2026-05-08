@@ -9,9 +9,15 @@
          "objects":[
                 {
                  "id":16,
+                 "properties":[
+                        {
+                         "name":"speed",
+                         "type":"float",
+                         "value":100
+                        }],
                  "template":"..\/templates\/player.json",
-                 "x":400,
-                 "y":240
+                 "x":336,
+                 "y":256
                 }, 
                 {
                  "id":18,
@@ -30,7 +36,7 @@
                         {
                          "name":"speed",
                          "type":"float",
-                         "value":60
+                         "value":40
                         }],
                  "template":"..\/templates\/walker_enemy.json",
                  "x":176,

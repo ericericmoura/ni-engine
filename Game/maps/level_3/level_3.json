@@ -46,7 +46,7 @@
                         }],
                  "template":"..\/templates\/walker_enemy.json",
                  "x":176,
-                 "y":240
+                 "y":224
                 }, 
                 {
                  "id":27,
@@ -63,7 +63,7 @@
                         }],
                  "template":"..\/templates\/walker_enemy.json",
                  "x":256,
-                 "y":240
+                 "y":224
                 }, 
                 {
                  "id":28,
@@ -75,7 +75,7 @@
                         }],
                  "template":"..\/templates\/walker_enemy.json",
                  "x":208,
-                 "y":240
+                 "y":224
                 }, 
                 {
                  "id":29,
@@ -87,7 +87,7 @@
                         }],
                  "template":"..\/templates\/walker_enemy.json",
                  "x":144,
-                 "y":240
+                 "y":224
                 }, 
                 {
                  "id":30,
@@ -104,7 +104,7 @@
                         }],
                  "template":"..\/templates\/walker_enemy.json",
                  "x":304,
-                 "y":240
+                 "y":224
                 }],
          "opacity":1,
          "type":"objectgroup",

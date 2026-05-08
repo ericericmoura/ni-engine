@@ -1,5 +1,6 @@
 #include "WalkerEnemyUpdateComponent.h"
 
+#include <SFML/System/Vector2.hpp>
 #include <NiEngine/AnimatedGraphicsComponent.h>
 #include <NiEngine/Animation.h>
 #include <NiEngine/UpdateComponent.h>
@@ -12,10 +13,10 @@
 #include "PlayerUpdateComponent.h"
 #include "EnemyUpdateComponent.h"
 
-WalkerEnemyUpdateComponent::WalkerEnemyUpdateComponent(ni::ComponentLocator& component_locator, ni::Id<ni::GameObjectTag> owner_id, int start_movement_direction)
-	: EnemyUpdateComponent(component_locator, owner_id)
+WalkerEnemyUpdateComponent::WalkerEnemyUpdateComponent(ni::ComponentLocator& component_locator, ni::Id<ni::GameObjectTag> owner_id, int start_movement_direction, sf::Vector2f enemy_size)
+	: EnemyUpdateComponent(component_locator, owner_id, enemy_size)
 {
-	movement_direction = start_movement_direction;
+	movement_direction = start_movement_direction;	
 }
 
 void WalkerEnemyUpdateComponent::Init(ni::AnimatedGraphicsComponent& graphics, CharacterPhysicsComponent& physics)
@@ -62,7 +63,7 @@ void WalkerEnemyUpdateComponent::Update()
 		return;
 	}
 	UpdatePlayerTrackingStatus();
-	if (distance_to_player_ < 16.0f)
+	if (distance_to_player_ < 32.0f)
 	{
 		EnemyUpdateComponent::Update();
 	}	

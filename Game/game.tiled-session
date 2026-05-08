@@ -1,27 +1,28 @@
 {
     "activeFile": "maps/level_9/level_9.json",
     "expandedProjectPaths": [
-        "maps/level_1",
         "maps/level_2",
-        "maps/backup/level_5",
-        "maps/level_14",
-        "maps/backup",
-        "maps/level_13",
-        "maps/level_11",
-        "maps/level_01",
-        "maps/level_6",
+        "maps/level_1",
         "maps/level_5",
-        "tilesets",
-        "maps",
+        "maps/level_14",
         "maps/level_3",
+        ".",
+        "maps/level_11",
         "maps/level_9",
         "maps/backup/level_6",
-        "maps/level_4",
+        "maps/level_13",
+        "maps/level_01",
+        "maps/backup",
         "maps/level_12",
-        "maps/level_02",
+        "maps",
         "maps/templates",
+        "maps/backup/level_5",
+        "maps/level_7",
+        "tilesets",
+        "maps/level_6",
+        "maps/level_02",
         "maps/level_15",
-        "."
+        "maps/level_4"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -110,8 +111,8 @@
             "scale": 2.030625,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 239.82763927362262,
-                "y": 159.80301631271158
+                "x": 239.58140966451214,
+                "y": 159.5567867036011
             }
         },
         "maps/level_10/level_10.json": {
@@ -178,8 +179,8 @@
             "scale": 2,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 240,
-                "y": 160.25
+                "x": 239.75,
+                "y": 160
             }
         },
         "maps/level_2/level_2.tmx": {
@@ -200,8 +201,8 @@
             "scale": 3,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 240,
-                "y": 160.16666666666666
+                "x": 240.16666666666666,
+                "y": 160.33333333333334
             }
         },
         "maps/level_4/level_4.json": {
@@ -211,8 +212,8 @@
             "scale": 2.030625,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 239.82763927362262,
-                "y": 159.80301631271158
+                "x": 239.58140966451214,
+                "y": 159.5567867036011
             }
         },
         "maps/level_4/level_4.tmx": {
@@ -238,6 +239,9 @@
             }
         },
         "maps/level_6/level_6.json": {
+            "expandedObjectLayers": [
+                8
+            ],
             "scale": 2.030625,
             "selectedLayer": 0,
             "viewCenter": {
@@ -265,11 +269,14 @@
             }
         },
         "maps/level_9/level_9.json": {
-            "scale": 2.064270833333333,
+            "expandedObjectLayers": [
+                8
+            ],
+            "scale": 2,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 259.4136347580361,
-                "y": 162.28490689811778
+                "x": 231.75,
+                "y": 175
             }
         },
         "maps/rules/ground_autotile_rules.tmx": {
@@ -346,23 +353,25 @@
         "maps/level_2/level_2.json",
         "maps/level_3/level_3.json",
         "maps/level_4/level_4.json",
-        "maps/level_9/level_9.json"
+        "maps/level_9/level_9.json",
+        "maps/level_6/level_6.json",
+        "maps/level_7/level_7.json"
     ],
     "project": "game.tiled-project",
     "property.type": "float",
     "recentFiles": [
-        "maps/backup/level_9.json",
-        "maps/backup/level_6.json",
-        "maps/level_11/level_11.json",
-        "maps/level_12/level_12.json",
-        "maps/level_13/level_13.json",
         "maps/level_14/level_14.json",
+        "maps/level_13/level_13.json",
+        "maps/level_12/level_12.json",
+        "maps/level_11/level_11.json",
         "maps/level_1/level_1.json",
         "maps/level_2/level_2.json",
         "maps/level_3/level_3.json",
         "maps/level_4/level_4.json",
+        "maps/level_7/level_7.json",
+        "maps/level_6/level_6.json",
         "maps/level_9/level_9.json",
-        "maps/level_6/level_6.json"
+        "maps/backup/level_9.json"
     ],
     "tileset.lastUsedExportFilter": "JSON tileset files (*.tsj *.json)",
     "tileset.lastUsedFormat": "tsx",

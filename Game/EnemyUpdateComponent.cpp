@@ -1,20 +1,24 @@
 #include "EnemyUpdateComponent.h"
 
-#include <cstdlib>
-
+#include <SFML/System/Vector2.hpp>
 #include <NiEngine/ComponentLocator.h>
 #include <NiEngine/GameObjectTag.h>
 #include <NiEngine/Id.h>
 #include <NiEngine/UpdateComponent.h>
 #include <NiEngine/TransformComponent.h>
+#include <NiEngine/HitboxComponent.h>
 
 #include "PlatformerGameMode.h"
 #include "CharacterPhysicsComponent.h"
+#include "PlayerUpdateComponent.h"
 
-EnemyUpdateComponent::EnemyUpdateComponent(ni::ComponentLocator& component_locator, ni::Id<ni::GameObjectTag> owner_id) 
+EnemyUpdateComponent::EnemyUpdateComponent(ni::ComponentLocator& component_locator, ni::Id<ni::GameObjectTag> owner_id, sf::Vector2f enemy_size)
 	: ni::UpdateComponent(component_locator)
 {
 	owner_id_ = owner_id;
+
+	head_hurtbox_.SetSize({ enemy_size.x, enemy_size.y / 2.0f });
+	head_hurtbox_.SetPositionOffset({ -enemy_size.x/2.0f, -enemy_size.y/2.0f - 1 });
 }
 
 void EnemyUpdateComponent::Update()
@@ -35,7 +39,7 @@ void EnemyUpdateComponent::CheckCollisionWithPlayer()
 	auto physics        = static_cast<CharacterPhysicsComponent*>(component_locator_.GetPhysicsComponent(owner_id_ ));
 	auto player_physics = static_cast<CharacterPhysicsComponent*>(component_locator_.GetPhysicsComponent(player_id_));
 	
-	ni::TransformComponent* transform = component_locator_.GetTransformComponent(owner_id_);
+	ni::TransformComponent* transform        = component_locator_.GetTransformComponent(owner_id_);
 	ni::TransformComponent* player_transform = component_locator_.GetTransformComponent(player_id_);	
 
 	if (physics->GetFeetBounds(transform->GetTransformable().getPosition()).findIntersection(player_physics->GetHeadBounds(player_transform->GetTransformable().getPosition())))
@@ -47,7 +51,10 @@ void EnemyUpdateComponent::CheckCollisionWithPlayer()
 	{
 		CollideSides();
 	}
-	if (physics->GetHeadBounds(transform->GetTransformable().getPosition()).findIntersection(player_physics->GetFeetBounds(player_transform->GetTransformable().getPosition())))
+	ni::HitboxComponent player_hitbox = static_cast<PlayerUpdateComponent*>(component_locator_.GetUpdateComponent(player_id_))->GetFeetHitbox();
+
+	head_hurtbox_.SetPosition(transform->GetTransformable().getPosition());
+	if (head_hurtbox_.IsColliding(player_hitbox))
 	{
 		CollideTop();
 	}

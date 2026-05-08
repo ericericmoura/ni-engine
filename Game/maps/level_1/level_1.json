@@ -20,16 +20,21 @@
                  "y":272
                 }, 
                 {
-                 "id":20,
+                 "id":23,
                  "properties":[
+                        {
+                         "name":"initial_walking_direction",
+                         "type":"int",
+                         "value":-1
+                        }, 
                         {
                          "name":"speed",
                          "type":"float",
-                         "value":120
+                         "value":60
                         }],
                  "template":"..\/templates\/walker_enemy.json",
-                 "x":224,
-                 "y":272
+                 "x":176,
+                 "y":256
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -131,7 +136,7 @@
          "y":0
         }],
  "nextlayerid":10,
- "nextobjectid":21,
+ "nextobjectid":25,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.12.1",

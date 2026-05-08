@@ -1,5 +1,8 @@
 #include "PlayerUpdateComponent.h"
 
+#include <iostream>
+
+#include <NiEngine/TransformComponent.h>
 #include <NiEngine/ComponentLocator.h>
 #include <NiEngine/UpdateComponent.h>
 #include <NiEngine/ServiceLocator.h>
@@ -19,7 +22,7 @@ PlayerUpdateComponent::~PlayerUpdateComponent()
 	ni::ServiceLocator::Instance().GetEventDispatcher().RemoveKeyPressedEvent(key_pressed_event_id_);
 }
 
-PlayerUpdateComponent::PlayerUpdateComponent(ni::ComponentLocator& component_locator, ni::Id<ni::GameObjectTag> owner_id, PlatformerGameMode& game_mode)
+PlayerUpdateComponent::PlayerUpdateComponent(ni::ComponentLocator& component_locator, ni::Id<ni::GameObjectTag> owner_id, PlatformerGameMode& game_mode, sf::Vector2f player_size)
 	: ni::UpdateComponent(component_locator)
 {
 	owner_id_ = owner_id;
@@ -30,6 +33,9 @@ PlayerUpdateComponent::PlayerUpdateComponent(ni::ComponentLocator& component_loc
 	on_player_killed_.Subscribe([&game_mode]() {
 		game_mode.RestartLevel();
 	});
+
+	feet_hitbox_.SetSize({ player_size.x / 2.0f, player_size.y / 2.0f + 1 });
+	feet_hitbox_.SetPositionOffset({ -player_size.x/4.0f,   0 });
 }
 
 void PlayerUpdateComponent::Init(ni::AnimatedGraphicsComponent& graphics, CharacterPhysicsComponent& physics)
@@ -93,6 +99,9 @@ void PlayerUpdateComponent::Init(ni::AnimatedGraphicsComponent& graphics, Charac
 
 void PlayerUpdateComponent::Update()
 {
+	ni::TransformComponent* transform = component_locator_.GetTransformComponent(owner_id_);
+	feet_hitbox_.SetPosition(transform->GetTransformable().getPosition());
+
 	auto physics = static_cast<CharacterPhysicsComponent*>(component_locator_.GetPhysicsComponent(owner_id_));
 
 	if (dead_)

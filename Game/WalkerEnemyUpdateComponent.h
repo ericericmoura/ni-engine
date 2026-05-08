@@ -2,19 +2,19 @@
 
 #include <string>
 
+#include <SFML/System/Vector2.hpp>
 #include <NiEngine/AnimatedGraphicsComponent.h>
-
-#include "EnemyUpdateComponent.h"
-#include "CharacterPhysicsComponent.h"
-
 #include <NiEngine/ComponentLocator.h>
 #include <NiEngine/GameObjectTag.h>
 #include <NiEngine/Id.h>
 
+#include "EnemyUpdateComponent.h"
+#include "CharacterPhysicsComponent.h"
+
 class WalkerEnemyUpdateComponent : public EnemyUpdateComponent
 {
 public:
-	WalkerEnemyUpdateComponent(ni::ComponentLocator& component_locator, ni::Id<ni::GameObjectTag> owner_id, int start_movement_direction);
+	WalkerEnemyUpdateComponent(ni::ComponentLocator& component_locator, ni::Id<ni::GameObjectTag> owner_id, int start_movement_direction, sf::Vector2f enemy_size);
 	void Init(ni::AnimatedGraphicsComponent& graphics, CharacterPhysicsComponent& physics) override;
 	void Update() override;
 

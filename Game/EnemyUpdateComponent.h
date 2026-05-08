@@ -6,13 +6,14 @@
 #include <NiEngine/ComponentLocator.h>
 #include <NiEngine/GameObjectTag.h>
 #include <NiEngine/Id.h>
+#include <NiEngine/HitboxComponent.h>
 
 #include "CharacterPhysicsComponent.h"
 
 class EnemyUpdateComponent : public ni::UpdateComponent
 {
 public:
-	EnemyUpdateComponent(ni::ComponentLocator& component_locator, ni::Id<ni::GameObjectTag> owner_id);
+	EnemyUpdateComponent(ni::ComponentLocator& component_locator, ni::Id<ni::GameObjectTag> owner_id, sf::Vector2f enemy_size);
 
 	virtual void Init(ni::AnimatedGraphicsComponent& graphics, CharacterPhysicsComponent& physics) = 0;
 	virtual void Update() override;
@@ -29,6 +30,8 @@ protected:
 	void UpdatePlayerTrackingStatus();
 
 private: 
+	ni::HitboxComponent head_hurtbox_;
+
 	virtual void CollideSides()  = 0;
 	virtual void CollideTop()    = 0;
 	virtual void CollideBottom() = 0;

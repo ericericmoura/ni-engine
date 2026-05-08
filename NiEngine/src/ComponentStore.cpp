@@ -105,8 +105,8 @@ void ni::ComponentStore::Render(sf::RenderTarget& target, sf::RenderStates state
 		TransformComponent* transform = GetTransformComponent(id);
 		if (transform)
 		{
-			local_state.transform *= transform->GetTransformable().getTransform();
-		}		
+			local_state.transform *= transform->GetTransformable().getTransform();			
+		}
 
 		for (auto& component : components)
 		{

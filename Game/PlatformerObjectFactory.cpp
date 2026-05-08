@@ -79,7 +79,7 @@ void PlatformerObjectFactory::SpawnPlayer(ni::ObjectBlueprint object, ni::Object
 	auto graphics = std::make_unique<ni::AnimatedGraphicsComponent>(texture_key, texture_coordinates.size, 1);
 
 	auto& platformer_mode = static_cast<PlatformerGameMode&>(mode);
-	auto update   = std::make_unique<PlayerUpdateComponent>(mode.GetComponentStore(), id, platformer_mode);
+	auto update   = std::make_unique<PlayerUpdateComponent>(mode.GetComponentStore(), id, platformer_mode, sf::Vector2f(texture_coordinates.size));
 
 	ni::TransformComponent transform;
 	transform.GetTransformable().setPosition(object.position_);
@@ -195,7 +195,7 @@ void PlatformerObjectFactory::SpawnEnemy(ni::ObjectBlueprint object, ni::ObjectT
 
 	auto graphics = std::make_unique<ni::AnimatedGraphicsComponent>(texture_key, texture_coordinates.size, 1);
 
-	auto update = std::make_unique<WalkerEnemyUpdateComponent>(mode.GetComponentStore(), id, GetAttributeFromObject<int>(object, object_template, "initial_walking_direction"));
+	auto update = std::make_unique<WalkerEnemyUpdateComponent>(mode.GetComponentStore(), id, GetAttributeFromObject<int>(object, object_template, "initial_walking_direction"), sf::Vector2f(texture_coordinates.size));
 
 	ni::TransformComponent transform;
 	transform.GetTransformable().setPosition(object.position_);

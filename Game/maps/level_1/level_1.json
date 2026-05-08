@@ -26,20 +26,9 @@
                  "y":272
                 }, 
                 {
-                 "id":23,
-                 "properties":[
-                        {
-                         "name":"initial_walking_direction",
-                         "type":"int",
-                         "value":-1
-                        }, 
-                        {
-                         "name":"speed",
-                         "type":"float",
-                         "value":40
-                        }],
-                 "template":"..\/templates\/walker_enemy.json",
-                 "x":176,
+                 "id":25,
+                 "template":"..\/templates\/jumper_enemy.json",
+                 "x":224,
                  "y":256
                 }],
          "opacity":1,
@@ -142,7 +131,7 @@
          "y":0
         }],
  "nextlayerid":10,
- "nextobjectid":25,
+ "nextobjectid":26,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.12.1",

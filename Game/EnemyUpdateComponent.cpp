@@ -1,5 +1,7 @@
 #include "EnemyUpdateComponent.h"
 
+#include <cstdlib>
+
 #include <SFML/System/Vector2.hpp>
 #include <NiEngine/ComponentLocator.h>
 #include <NiEngine/GameObjectTag.h>
@@ -70,6 +72,7 @@ void EnemyUpdateComponent::UpdatePlayerTrackingStatus()
 	ni::TransformComponent* player_transform = component_locator_.GetTransformComponent(player_id_);
 
 	direction_to_player_ = player_transform->GetTransformable().getPosition() - transform->GetTransformable().getPosition();
+	horizontal_distance_to_player_ = std::abs(direction_to_player_.x);
 	distance_to_player_  = direction_to_player_.length();
 
 	if (direction_to_player_.length() == 0)
@@ -83,8 +86,10 @@ void EnemyUpdateComponent::PlayKnockbackAnimation(CharacterPhysicsComponent& phy
 {
 	if (!airborne_)
 	{
+		float old_jump_force = physics.GetJumpForce();
 		physics.SetJumpForce(150);
 		physics.ForceJump();
+		physics.SetJumpForce(old_jump_force);
 		airborne_ = true;
 	}
 	physics.Move(direction);

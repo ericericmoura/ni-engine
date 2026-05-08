@@ -17,7 +17,8 @@ enum ObjectTypes
 	Player   = 2,
 	ExitDoor = 3,
 	Ground   = 4,
-	Enemy    = 5
+	WalkerEnemy = 5,
+	JumperEnemy = 6
 };
 
 class PlatformerObjectFactory : public ni::ObjectFactory
@@ -27,7 +28,8 @@ private:
 	void SpawnPlayer      (ni::ObjectBlueprint object, ni::ObjectTemplateBlueprint& object_template, std::string texture_key, sf::IntRect texture_coordinates, ni::GameMode& mode);
 	void SpawnMovingObject(ni::ObjectBlueprint object, ni::ObjectTemplateBlueprint& object_template, std::string texture_key, sf::IntRect texture_coordinates, ni::GameMode& mode, std::string object_tag);
 	void SpawnExitDoor    (ni::ObjectBlueprint object, ni::ObjectTemplateBlueprint& object_template, std::string texture_key, sf::IntRect texture_coordinates, ni::GameMode& mode);
-	void SpawnEnemy       (ni::ObjectBlueprint object, ni::ObjectTemplateBlueprint& object_template, std::string texture_key, sf::IntRect texture_coordinates, ni::GameMode& mode);
+	void SpawnWalkerEnemy (ni::ObjectBlueprint object, ni::ObjectTemplateBlueprint& object_template, std::string texture_key, sf::IntRect texture_coordinates, ni::GameMode& mode);
+	void SpawnJumperEnemy (ni::ObjectBlueprint object, ni::ObjectTemplateBlueprint& object_template, std::string texture_key, sf::IntRect texture_coordinates, ni::GameMode& mode);
 
 	template <typename T>
 	T GetAttributeFromObject(ni::ObjectBlueprint& object, ni::ObjectTemplateBlueprint& object_template, const std::string& attribute)

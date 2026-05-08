@@ -26,6 +26,8 @@ void ni::Text::SetTextOutline(int size, sf::Color color)
 
 void ni::Text::Render(sf::RenderTarget& target, sf::RenderStates states, BitmapStore& store)
 {
+	bounds_.size = text_.getGlobalBounds().size;
+
 	text_.setPosition(bounds_.position);
 
 	target.draw(text_, states);

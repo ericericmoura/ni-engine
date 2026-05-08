@@ -15,7 +15,8 @@ namespace ni {
 class Panel : public Container
 {
 public:
-	Panel(sf::Color background_color, sf::FloatRect rect, sf::Vector2f gap, sf::Vector2f margin, bool vertical, int max_columns);
+	Panel(sf::Color background_color, sf::Vector2f gap, sf::Vector2f margin, bool vertical, int max_columns, sf::FloatRect rect);
+	Panel(sf::Color background_color, sf::Vector2f gap, sf::Vector2f margin, bool vertical, int max_columns, sf::Vector2f position);
 
 	virtual void Render(sf::RenderTarget& target, sf::RenderStates states, BitmapStore& store) override;
 

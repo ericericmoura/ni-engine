@@ -19,16 +19,21 @@ public:
 	int AddComponent(std::unique_ptr<HUDComponent> component);
 	HUDComponent* GetComponentByIndex(int index) const;
 
+	sf::Vector2f GetContainerSize() const { return container_size_; }
+
 	void Render(sf::RenderTarget& target, sf::RenderStates states, BitmapStore& store) override;
 
 private:
 	std::vector<std::unique_ptr<HUDComponent>> hud_components_ = {};
+
+	sf::Vector2f container_size_ = {};
 
 	sf::Vector2f gap_    = {};
 	sf::Vector2f margin_ = {};
 	int  max_columns_ = 0;
 	bool vertical_    = false;
 
+	bool fit_content_ = true;
 };
 
 }

@@ -34,6 +34,8 @@ private:
 	bool restart_level_   = false;
 	bool load_next_level_ = false;
 
+	int player_death_counter_ = 0;
+
 	ni::TextFadeScreenTransition game_over_transition_;
 
 	ni::Panel hud_;

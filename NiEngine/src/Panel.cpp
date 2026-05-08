@@ -8,18 +8,29 @@
 #include <NiEngine/BitmapStore.h>
 #include <NiEngine/Container.h>
 
-ni::Panel::Panel(sf::Color background_color, sf::FloatRect rect, sf::Vector2f gap, sf::Vector2f margin, bool vertical, int max_columns) : Container(gap, margin, vertical, max_columns)
-{
-	background_.setFillColor(background_color);
-	
-	bounds_ = rect;
+ni::Panel::Panel(sf::Color background_color, sf::Vector2f gap, sf::Vector2f margin, bool vertical, int max_columns, sf::FloatRect rect) : Container(gap, margin, vertical, max_columns)
+{	
+	bounds_.size = rect.size;
 
+	rect.size += margin;
 	background_.setPosition(rect.position);
 	background_.setSize    (rect.size);	
+
+	Panel(background_color, gap, margin, vertical, max_columns, rect.position);
+}
+
+ni::Panel::Panel(sf::Color background_color, sf::Vector2f gap, sf::Vector2f margin, bool vertical, int max_columns, sf::Vector2f position) : Container(gap, margin, vertical, max_columns)
+{
+	bounds_.position = position;
+
+	background_.setFillColor(background_color);
 }
 
 void ni::Panel::Render(sf::RenderTarget& target, sf::RenderStates states, BitmapStore& store)
 {
+	background_.setPosition(GetBounds().position);
+	background_.setSize(GetBounds().size);
+
 	target.draw(background_, states);
 	Container::Render(target, states, store);
 }

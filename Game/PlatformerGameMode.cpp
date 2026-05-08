@@ -20,7 +20,7 @@
 
 #include "PlatformerObjectFactory.h"
 
-PlatformerGameMode::PlatformerGameMode() : hud_(sf::Color::Black, { {10, 10}, {265, 50} }, {20, 0}, { 10, 10 }, false, 2)
+PlatformerGameMode::PlatformerGameMode() : hud_(sf::Color::Black, {20, 0}, { 20, 15 }, false, 2, {0, 0})
 {	
 	ni::Converter::pixels_per_meters_ = 16;
 
@@ -28,7 +28,7 @@ PlatformerGameMode::PlatformerGameMode() : hud_(sf::Color::Black, { {10, 10}, {2
 	level_text->SetTextOutline(2, sf::Color::Black);
 	int text_component_index = hud_.AddComponent(std::move(level_text));
 
-	auto deaths_text = std::make_unique<ni::Text>(kMainGameFontKey, "Deaths 2", sf::Color::White, 30);
+	auto deaths_text = std::make_unique<ni::Text>(kMainGameFontKey, "Deaths 0", sf::Color::White, 30);
 	deaths_text->SetTextOutline(2, sf::Color::Black);
 	int death_text_component_index = hud_.AddComponent(std::move(deaths_text));
 
@@ -49,11 +49,21 @@ PlatformerGameMode::PlatformerGameMode() : hud_(sf::Color::Black, { {10, 10}, {2
 	engine_title_transition_.Play();
 	
 	current_transition_ = std::make_unique<ni::WipeScreenTransition>(.8f, transitions_camera_.GetView().getSize(), false, sf::Color::Black);
-	current_transition_->OnTransitionCoveredScreen([this, text_component_index]() {
+	current_transition_->OnTransitionCoveredScreen([this, text_component_index, death_text_component_index]() {
 		if (restart_level_)
 		{
 			level_.ReloadLevel(*this);
 			restart_level_ = false;
+
+			player_death_counter_++;
+
+			auto text_component = GetLevelTextHUD(death_text_component_index);
+			if (!text_component)
+			{
+				return;
+			}
+			std::string level_string = std::format("Deaths {}", player_death_counter_);
+			text_component->SetTextString(level_string);
 			return;
 		}
 		if (load_next_level_)

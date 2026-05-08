@@ -1,19 +1,27 @@
 {
-    "activeFile": "maps/level_15/level_15.json",
+    "activeFile": "maps/level_9/level_9.json",
     "expandedProjectPaths": [
-        "maps/backup",
+        "maps/level_1",
         "maps/level_2",
         "maps/backup/level_5",
-        "maps/level_5",
-        "maps/level_02",
+        "maps/level_14",
+        "maps/backup",
+        "maps/level_13",
+        "maps/level_11",
         "maps/level_01",
-        "maps/level_12",
-        ".",
+        "maps/level_6",
+        "maps/level_5",
         "tilesets",
-        "maps/level_15",
+        "maps",
+        "maps/level_3",
+        "maps/level_9",
+        "maps/backup/level_6",
         "maps/level_4",
+        "maps/level_12",
+        "maps/level_02",
         "maps/templates",
-        "maps"
+        "maps/level_15",
+        "."
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -21,8 +29,35 @@
             "scale": 1.805,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 240.1662049861496,
-                "y": 160.11080332409972
+                "x": 279.22437673130196,
+                "y": 221.0526315789474
+            }
+        },
+        "maps/backup/level_6.json": {
+            "expandedObjectLayers": [
+                8
+            ],
+            "scale": 2.539270833333333,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 239.6357221971531,
+                "y": 190.99971284407437
+            }
+        },
+        "maps/backup/level_6/level_6.json": {
+            "scale": 1.805,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 239.88919667590028,
+                "y": 304.7091412742383
+            }
+        },
+        "maps/backup/level_9.json": {
+            "scale": 2.539270833333333,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 247.90581285638103,
+                "y": 155.5564671616688
             }
         },
         "maps/level_01.tmx": {
@@ -68,6 +103,17 @@
                 "y": 505
             }
         },
+        "maps/level_1/level_1.json": {
+            "expandedObjectLayers": [
+                8
+            ],
+            "scale": 2.030625,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 239.82763927362262,
+                "y": 159.80301631271158
+            }
+        },
         "maps/level_10/level_10.json": {
             "scale": 2.064270833333333,
             "selectedLayer": 0,
@@ -83,35 +129,38 @@
             "scale": 2.030625,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 294.49061249615266,
-                "y": 179.74761465066172
+                "x": 239.82763927362262,
+                "y": 159.80301631271158
             }
         },
         "maps/level_12/level_12.json": {
             "expandedObjectLayers": [
                 8
             ],
-            "scale": 4,
+            "scale": 2,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 133.75,
-                "y": 221.5
+                "x": 240,
+                "y": 160.25
             }
         },
         "maps/level_13/level_13.json": {
             "scale": 2.030625,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 230.96337334564478,
-                "y": 207.8177900892582
+                "x": 239.82763927362262,
+                "y": 159.80301631271158
             }
         },
         "maps/level_14/level_14.json": {
+            "expandedObjectLayers": [
+                8
+            ],
             "scale": 3,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 209.99999999999997,
-                "y": 215
+                "x": 240,
+                "y": 160.16666666666666
             }
         },
         "maps/level_15/level_15.json": {
@@ -120,6 +169,17 @@
             "viewCenter": {
                 "x": 207.66666666666669,
                 "y": 194.66666666666663
+            }
+        },
+        "maps/level_2/level_2.json": {
+            "expandedObjectLayers": [
+                8
+            ],
+            "scale": 2,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 240,
+                "y": 160.25
             }
         },
         "maps/level_2/level_2.tmx": {
@@ -131,6 +191,28 @@
             "viewCenter": {
                 "x": 243.5,
                 "y": 166.625
+            }
+        },
+        "maps/level_3/level_3.json": {
+            "expandedObjectLayers": [
+                8
+            ],
+            "scale": 3,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 240,
+                "y": 160.16666666666666
+            }
+        },
+        "maps/level_4/level_4.json": {
+            "expandedObjectLayers": [
+                8
+            ],
+            "scale": 2.030625,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 239.82763927362262,
+                "y": 159.80301631271158
             }
         },
         "maps/level_4/level_4.tmx": {
@@ -155,12 +237,23 @@
                 "y": 217.5
             }
         },
+        "maps/level_6/level_6.json": {
+            "scale": 2.030625,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 247.460757156048,
+                "y": 178.76269621421974
+            }
+        },
         "maps/level_7/level_7.json": {
+            "expandedObjectLayers": [
+                8
+            ],
             "scale": 2.539270833333333,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 239.8326291176109,
-                "y": 160.0853263321984
+                "x": 241.9986052426468,
+                "y": 174.85334536653406
             }
         },
         "maps/level_8/level_8.json": {
@@ -175,8 +268,8 @@
             "scale": 2.064270833333333,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 270.5555835898471,
-                "y": 161.800474340213
+                "x": 259.4136347580361,
+                "y": 162.28490689811778
             }
         },
         "maps/rules/ground_autotile_rules.tmx": {
@@ -233,7 +326,7 @@
             "scaleInEditor": 8
         }
     },
-    "last.exportedFilePath": "C:/Users/Eric/Documents/01_Projects/02_Games/04_CustomEngine/Game/Game/maps/level_5",
+    "last.exportedFilePath": "C:/Users/Eric/Documents/01_Projects/02_Games/04_CustomEngine/Game/Game/maps/backup",
     "last.externalTilesetPath": "C:/Users/Eric/Documents/01_Projects/02_Games/04_CustomEngine/Game/Game/tilesets",
     "last.imagePath": "C:/Users/Eric/Documents/01_Projects/02_Games/04_CustomEngine/Game/Game/graphics",
     "last.objectTemplatePath": "C:/Users/Eric/Documents/01_Projects/02_Games/04_CustomEngine/Game/Game/maps/templates",
@@ -245,28 +338,31 @@
     "map.tileWidth": 32,
     "map.width": 50,
     "openFiles": [
-        "tilesets/karsioriart_tiles_and_backgrounds.tsx",
-        "tilesets/kenney_1bit.json",
-        "maps/level_4/level_4.tmx",
-        "maps/level_5/level_5.json",
+        "maps/level_11/level_11.json",
         "maps/level_12/level_12.json",
-        "maps/level_15/level_15.json"
+        "maps/level_13/level_13.json",
+        "maps/level_14/level_14.json",
+        "maps/level_1/level_1.json",
+        "maps/level_2/level_2.json",
+        "maps/level_3/level_3.json",
+        "maps/level_4/level_4.json",
+        "maps/level_9/level_9.json"
     ],
     "project": "game.tiled-project",
     "property.type": "float",
     "recentFiles": [
-        "maps/level_15/level_15.json",
+        "maps/backup/level_9.json",
+        "maps/backup/level_6.json",
+        "maps/level_11/level_11.json",
         "maps/level_12/level_12.json",
-        "maps/level_5/level_5.json",
-        "maps/level_4/level_4.tmx",
-        "tilesets/kenney_1bit.json",
-        "tilesets/karsioriart_tiles_and_backgrounds.tsx",
-        "maps/backup/level_5/level_5.json",
-        "maps/level_7/level_7.json",
-        "maps/level_8/level_8.json",
+        "maps/level_13/level_13.json",
+        "maps/level_14/level_14.json",
+        "maps/level_1/level_1.json",
+        "maps/level_2/level_2.json",
+        "maps/level_3/level_3.json",
+        "maps/level_4/level_4.json",
         "maps/level_9/level_9.json",
-        "maps/level_10/level_10.json",
-        "tilesets/kenney_1bit.tsx"
+        "maps/level_6/level_6.json"
     ],
     "tileset.lastUsedExportFilter": "JSON tileset files (*.tsj *.json)",
     "tileset.lastUsedFormat": "tsx",

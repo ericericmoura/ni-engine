@@ -48,6 +48,16 @@ void ni::Level::LoadNextLevel(GameMode& mode)
 	ReloadLevel(mode);
 }
 
+void ni::Level::LoadLevelByIndex(GameMode& mode, int index)
+{
+	if (index > num_of_levels_)
+	{
+		return;
+	}	
+	current_level_ = index;
+	ReloadLevel(mode);
+}
+
 void ni::Level::EnableTilemapCollisions(b2WorldId world_id)
 {
 	tilemap_.EnableCollision(world_id);

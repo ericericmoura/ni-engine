@@ -26,19 +26,19 @@ class GameMode;
 class Level
 {
 public:
-	inline static const std::string kDefaultLevelsDirectory = "maps";
+	inline static const std::string kDefaultLevelsDirectory      = "maps";
 	inline static const std::string kTransparentTilesTilesetName = "transparent_tiles";
 
 	inline static const std::string kPrototypeLayerName = "prototype";
-	inline static const std::string kTerrainLayerName = "terrain";
-	inline static const std::string kIgnoreLayerName  = "gameignore";
-	inline static const std::string kObjectsLayerType = "objectgroup";
+	inline static const std::string kTerrainLayerName   = "terrain";
+	inline static const std::string kIgnoreLayerName    = "gameignore";
+	inline static const std::string kObjectsLayerType   = "objectgroup";
 
 	void SetTotalLevelCount(int count);
 
 	void ReloadLevel  (GameMode& mode);
 	void LoadNextLevel(GameMode& mode);
-	void LoadLevel(int index);
+	void LoadLevelByIndex(GameMode& mode, int index);
 	void RegisterObjectFactory(std::unique_ptr<ObjectFactory> factory);
 
 	int GetCurrentLevelIndex() const { return current_level_; }
@@ -53,7 +53,7 @@ public:
 	void RenderTilemap(sf::RenderTarget& target, sf::RenderStates states, BitmapStore& store);
 
 private:
-	int current_level_ = 10;
+	int current_level_ = 0;
 	int num_of_levels_ = 0;
 	
 	Subject<> last_level_finished_;
@@ -68,6 +68,7 @@ private:
 
 	void LoadTilesetBlueprints(const std::vector<TilesetReference>& tileset_references);
 	void LoadObjects(GameMode& mode);
+	void LoadLevel(int index);
 };
 
 }

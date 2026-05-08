@@ -166,6 +166,7 @@
     <ClInclude Include="CharacterPhysicsComponent.h" />
     <ClInclude Include="EnemyUpdateComponent.h" />
     <ClInclude Include="ExitDoorUpdateComponent.h" />
+    <ClInclude Include="LevelStartBlueprint.h" />
     <ClInclude Include="MovingObstacleUpdateComponent.h" />
     <ClInclude Include="ObstacleCollisionComponent.h" />
     <ClInclude Include="ObstacleHarmfulCollisionComponent.h" />

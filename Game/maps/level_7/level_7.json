@@ -50,6 +50,11 @@
                          "name":"repeat_x",
                          "type":"int",
                          "value":5
+                        }, 
+                        {
+                         "name":"trigger_distance_x",
+                         "type":"float",
+                         "value":16
                         }],
                  "template":"..\/templates\/ground.json",
                  "width":16,
@@ -73,6 +78,11 @@
                          "name":"repeat_x",
                          "type":"int",
                          "value":5
+                        }, 
+                        {
+                         "name":"trigger_distance_x",
+                         "type":"float",
+                         "value":16
                         }],
                  "template":"..\/templates\/ground - top.json",
                  "x":176,

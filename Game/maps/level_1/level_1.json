@@ -18,6 +18,18 @@
                  "template":"..\/templates\/exit_door.json",
                  "x":144,
                  "y":272
+                }, 
+                {
+                 "id":20,
+                 "properties":[
+                        {
+                         "name":"speed",
+                         "type":"float",
+                         "value":120
+                        }],
+                 "template":"..\/templates\/walker_enemy.json",
+                 "x":224,
+                 "y":272
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -119,7 +131,7 @@
          "y":0
         }],
  "nextlayerid":10,
- "nextobjectid":20,
+ "nextobjectid":21,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.12.1",

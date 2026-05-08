@@ -35,6 +35,76 @@
                  "template":"..\/templates\/spike.json",
                  "x":112,
                  "y":288
+                }, 
+                {
+                 "id":26,
+                 "properties":[
+                        {
+                         "name":"speed",
+                         "type":"float",
+                         "value":20
+                        }],
+                 "template":"..\/templates\/walker_enemy.json",
+                 "x":176,
+                 "y":240
+                }, 
+                {
+                 "id":27,
+                 "properties":[
+                        {
+                         "name":"initial_walking_direction",
+                         "type":"int",
+                         "value":-1
+                        }, 
+                        {
+                         "name":"speed",
+                         "type":"float",
+                         "value":20
+                        }],
+                 "template":"..\/templates\/walker_enemy.json",
+                 "x":256,
+                 "y":240
+                }, 
+                {
+                 "id":28,
+                 "properties":[
+                        {
+                         "name":"speed",
+                         "type":"float",
+                         "value":20
+                        }],
+                 "template":"..\/templates\/walker_enemy.json",
+                 "x":208,
+                 "y":240
+                }, 
+                {
+                 "id":29,
+                 "properties":[
+                        {
+                         "name":"speed",
+                         "type":"float",
+                         "value":20
+                        }],
+                 "template":"..\/templates\/walker_enemy.json",
+                 "x":144,
+                 "y":240
+                }, 
+                {
+                 "id":30,
+                 "properties":[
+                        {
+                         "name":"initial_walking_direction",
+                         "type":"int",
+                         "value":-1
+                        }, 
+                        {
+                         "name":"speed",
+                         "type":"float",
+                         "value":20
+                        }],
+                 "template":"..\/templates\/walker_enemy.json",
+                 "x":304,
+                 "y":240
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -136,7 +206,7 @@
          "y":0
         }],
  "nextlayerid":10,
- "nextobjectid":26,
+ "nextobjectid":31,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.12.1",

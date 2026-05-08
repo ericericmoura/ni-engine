@@ -13,7 +13,7 @@ ni::GameMode::GameMode()
 
 void ni::GameMode::LoadLevel(int index, bool enable_tilemap_collisions)
 {
-	level_.LoadLevel(index);
+	level_.LoadLevelByIndex(*this, index);
 	if (enable_tilemap_collisions)
 	{
 		level_.EnableTilemapCollisions(physics_engine_.GetWorldId());

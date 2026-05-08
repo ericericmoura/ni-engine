@@ -67,6 +67,9 @@ void PlatformerObjectFactory::SpawnPlayer(ni::ObjectBlueprint object, ni::Object
 {
 	ni::Id<ni::GameObjectTag> id = mode.CreateGameObject();
 
+	object.position_.x += texture_coordinates.size.x / 2.0f;
+	object.position_.y += texture_coordinates.size.y / 2.0f;
+
 	auto physics  = std::make_unique<CharacterPhysicsComponent>(texture_coordinates.size);
 
 	physics->SetGravity  (GetAttributeFromObject<float>(object, object_template, "gravity"   ));
@@ -184,12 +187,15 @@ void PlatformerObjectFactory::SpawnEnemy(ni::ObjectBlueprint object, ni::ObjectT
 {
 	ni::Id<ni::GameObjectTag> id = mode.CreateGameObject();
 
+	object.position_.x += texture_coordinates.size.x / 2.0f;
+	object.position_.y += texture_coordinates.size.y / 2.0f;
+
 	auto physics  = std::make_unique<CharacterPhysicsComponent>(texture_coordinates.size);
 	physics->SetSpeed(GetAttributeFromObject<float>(object, object_template, "speed"));
 
-	auto graphics = std::make_unique<ni::AnimatedGraphicsComponent>(texture_key, texture_coordinates.size, GetAttributeFromObject<float>(object, object_template, "initial_walking_direction"));
+	auto graphics = std::make_unique<ni::AnimatedGraphicsComponent>(texture_key, texture_coordinates.size, 1);
 
-	auto update = std::make_unique<WalkerEnemyUpdateComponent>(mode.GetComponentStore(), id, 1);
+	auto update = std::make_unique<WalkerEnemyUpdateComponent>(mode.GetComponentStore(), id, GetAttributeFromObject<int>(object, object_template, "initial_walking_direction"));
 
 	ni::TransformComponent transform;
 	transform.GetTransformable().setPosition(object.position_);

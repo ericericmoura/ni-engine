@@ -116,5 +116,8 @@
     <ClInclude Include="WalkerEnemyUpdateComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="LevelStartBlueprint.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

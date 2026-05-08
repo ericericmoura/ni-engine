@@ -17,14 +17,19 @@
 #include <NiEngine/Text.h>
 #include <NiEngine/HUDComponent.h>
 #include <NiEngine/ServiceLocator.h>
+#include <NiEngine/DataHandler.h>
 
+#include "LevelStartBlueprint.h"
 #include "PlatformerObjectFactory.h"
 
 PlatformerGameMode::PlatformerGameMode() : hud_(sf::Color::Black, {20, 0}, { 20, 15 }, false, 2, {0, 0})
 {	
+	ni::DataHandler<LevelStartBlueprint> config_handler("maps/config.json");
 	ni::Converter::pixels_per_meters_ = 16;
 
-	auto level_text = std::make_unique<ni::Text>(kMainGameFontKey, "Level 1", sf::Color::White, 30);
+	LevelStartBlueprint config = config_handler.GetBlueprint();
+
+	auto level_text = std::make_unique<ni::Text>(kMainGameFontKey, std::format("Level {}", config.start_level_), sf::Color::White, 30);
 	level_text->SetTextOutline(2, sf::Color::Black);
 	int text_component_index = hud_.AddComponent(std::move(level_text));
 
@@ -35,18 +40,24 @@ PlatformerGameMode::PlatformerGameMode() : hud_(sf::Color::Black, {20, 0}, { 20,
 	auto factory = std::make_unique<PlatformerObjectFactory>();
 	level_.RegisterObjectFactory(std::move(factory));
 	level_.SetTotalLevelCount(kTotalLevelCount);
-	level_.LoadNextLevel(*this);
+	level_.LoadLevelByIndex(*this, config.start_level_);
 	world_camera_.FitTo(level_.GetCurrentTilemap().GetBounds());
 
 	game_over_transition_   .Init(2, "Game   Over!"                      , kMainGameFontKey, 50, sf::Color::White, sf::Color::Black, transitions_camera_.GetView().getSize());
-	engine_title_transition_.Init(2, "\t\t NI   Engine\nPor  Eric  Moura", kMainGameFontKey, 50, sf::Color::White, sf::Color::Black, transitions_camera_.GetView().getSize());
-
-	// SIGNALS
-	engine_title_transition_.OnTransitionFinished([this]() {
-		current_transition_->Play(true);
+	
+	if (!config.skip_intro_)
+	{
+		engine_title_transition_.Init(2, "\t\t NI   Engine\nPor  Eric  Moura", kMainGameFontKey, 50, sf::Color::White, sf::Color::Black, transitions_camera_.GetView().getSize());
+		engine_title_transition_.OnTransitionFinished([this]() {
+			current_transition_->Play(true);
+			ni::ServiceLocator::Instance().GetSoundEngine().PlayMusic(kMainMusicKey, true, .6f);
+		});
+		engine_title_transition_.Play();
+	}
+	else
+	{
 		ni::ServiceLocator::Instance().GetSoundEngine().PlayMusic(kMainMusicKey, true, .6f);
-	});
-	engine_title_transition_.Play();
+	}
 	
 	current_transition_ = std::make_unique<ni::WipeScreenTransition>(.8f, transitions_camera_.GetView().getSize(), false, sf::Color::Black);
 	current_transition_->OnTransitionCoveredScreen([this, text_component_index, death_text_component_index]() {

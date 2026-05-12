@@ -1,5 +1,5 @@
 {
   "total_level_count": 15,
-  "start_level": 9,
-  "skip_intro": true
+  "start_level": 1,
+  "skip_intro": false
 }

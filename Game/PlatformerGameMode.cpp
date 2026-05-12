@@ -50,13 +50,13 @@ PlatformerGameMode::PlatformerGameMode() : hud_(sf::Color::Black, {20, 0}, { 20,
 		engine_title_transition_.Init(2, "\t\t NI   Engine\nPor  Eric  Moura", kMainGameFontKey, 50, sf::Color::White, sf::Color::Black, transitions_camera_.GetView().getSize());
 		engine_title_transition_.OnTransitionFinished([this]() {
 			current_transition_->Play(true);
-			ni::ServiceLocator::Instance().GetSoundEngine().PlayMusic(kMainMusicKey, true, .6f);
+			ni::ServiceLocator::Instance().GetSoundEngine().PlayMusic(kMainMusicKey, true, 1);	
 		});
 		engine_title_transition_.Play();
 	}
 	else
 	{
-		ni::ServiceLocator::Instance().GetSoundEngine().PlayMusic(kMainMusicKey, true, .6f);
+		ni::ServiceLocator::Instance().GetSoundEngine().PlayMusic(kMainMusicKey, true, 1);	
 	}
 	
 	current_transition_ = std::make_unique<ni::WipeScreenTransition>(.8f, transitions_camera_.GetView().getSize(), false, sf::Color::Black);

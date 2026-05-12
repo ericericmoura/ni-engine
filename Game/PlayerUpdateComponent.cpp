@@ -70,7 +70,7 @@ void PlayerUpdateComponent::Init(ni::AnimatedGraphicsComponent& graphics, Charac
 
 		airborne_ = true;
 
-		ni::ServiceLocator::Instance().GetSoundEngine().PlaySound(kJumpSoundKey, 0.70f);
+		ni::ServiceLocator::Instance().GetSoundEngine().PlaySound(kJumpSoundKey, 1);
 	});
 
 	physics.OnLanding([this]() {

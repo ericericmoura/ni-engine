@@ -111,8 +111,8 @@
             "scale": 2,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 275.5,
-                "y": 209
+                "x": 240,
+                "y": 159.75
             }
         },
         "maps/level_10/level_10.json": {
@@ -171,8 +171,8 @@
             "scale": 3,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 349.66666666666663,
-                "y": 176.66666666666663
+                "x": 240,
+                "y": 160.16666666666666
             }
         },
         "maps/level_2/level_2.json": {
@@ -356,9 +356,9 @@
     "project": "game.tiled-project",
     "property.type": "float",
     "recentFiles": [
-        "maps/level_1/level_1.json",
-        "tilesets/kenney_1bit.json",
         "maps/level_15/level_15.json",
+        "tilesets/kenney_1bit.json",
+        "maps/level_1/level_1.json",
         "maps/level_9/level_9.json",
         "maps/level_7/level_7.json",
         "maps/level_6/level_6.json",

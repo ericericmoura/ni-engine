@@ -8,12 +8,13 @@
 <summary>Sumário (clique para exibir)</summary>
   
 - [Descrição](#descrição)
+- [Como usar](#como-usar)
+  - [Template](#template)
+  - [Biblioteca Estática](#biblioteca-estática)
 - [Funcionalidades](#funcionalidades)
 - [Tech Stack](#stack)
 - [Ferramentas](#ferramentas)
 - [Detalhes Técnicos](#detalhes-técnicos)
-  - [Exemplo da criação de uma fase](#exemplo-da-criação-de-uma-fase)
-- [Créditos](#créditos)
 - [Licença](#licença)
 
 </details>
@@ -24,7 +25,7 @@ A Ni Engine (Novas Ideias Engine) é escrita em C++ e feita utilizando SFML, uma
 
 ## Como usar
 
-#### Opção 1
+#### Template
 
 Você pode usar esse repositório como um template, a solução possui 2 projetos: NiEngine e Game. Toda a lógica relacionada ao seu jogo vai no projeto Game.
 
@@ -35,7 +36,7 @@ C:/SFML
 C:/Box2D
 ```
 
-#### Opção 2
+#### Biblioteca estática
 
 Basta baixar a <a>última versão</a> e descompactar os arquivos.
 

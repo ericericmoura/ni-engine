@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./assets/readme/fusca_motor_2.png" width="200px" alt="GitHub Readme Stats" />
+  <img src="./assets/readme/fusca_motor_2.png" width="100px" alt="GitHub Readme Stats" />
   <h1 style="font-size: 28px; margin: 10px 0;">Ni Engine</h1>
   <p>Engine de jogos 2D feita com SFML e OpenGL</p>
 </div>

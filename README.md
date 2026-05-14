@@ -38,10 +38,9 @@ C:/Box2D
 
 #### Biblioteca estática
 
-Basta baixar a <a>última versão</a> e descompactar os arquivos.
+Basta baixar a <a href="">última versão</a> e descompactar os arquivos.
 
 ```
-NiEngine/
 ├── include/NiEngine/ <- arquivos .h
 └── lib/              <- arquivo  .lib
 ```

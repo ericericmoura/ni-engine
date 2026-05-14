@@ -38,7 +38,7 @@ C:/Box2D
 
 #### Biblioteca estática
 
-Basta baixar a <a href="">última versão</a> e descompactar os arquivos.
+Basta baixar a <a href="https://github.com/ericericmoura/ni-engine/releases/">última versão</a> e descompactar os arquivos.
 
 ```
 ├── include/NiEngine/ <- arquivos .h
